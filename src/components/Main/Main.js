@@ -1,8 +1,10 @@
+import Header from '../Header/Header';
+
 function Main() {
 
     return (
-        <main>
-
+        <main className="main">
+            <Header />
         </main>
     )
 }

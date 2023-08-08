@@ -4,7 +4,8 @@ import Main from '../Main/Main';
 function App() {
 
     return (
-        <Routes>
+        <div className="page">
+            <Routes>
             <Route
                 path='/'
                 element={<Main/>}
@@ -25,6 +26,7 @@ function App() {
                 path='/signup'
             />
         </Routes>
+        </div>
     )
 }
 
