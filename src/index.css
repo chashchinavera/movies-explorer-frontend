@@ -15,3 +15,6 @@
 
 /*header*/
 @import url(./components/Header/Header.css);
+
+/*promo*/
+@import url(./components/Main/Promo/Promo.css);
