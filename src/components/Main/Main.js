@@ -1,5 +1,6 @@
 import Header from '../Header/Header';
 import Promo from '../Main/Promo/Promo';
+import Project from '../Main/Project/Project';
 
 function Main() {
 
@@ -7,6 +8,7 @@ function Main() {
         <main className="main">
             <Header />
             <Promo />
+            <Project />
         </main>
     )
 }

@@ -18,3 +18,6 @@
 
 /*promo*/
 @import url(./components/Main/Promo/Promo.css);
+
+/*project*/
+@import url(./components/Main/Project/Project.css);
