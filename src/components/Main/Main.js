@@ -4,6 +4,7 @@ import Project from '../Main/Project/Project';
 import Techs from './Techs/Techs';
 import Me from './Me/Me';
 import Portfolio from './Portfolio/Portfolio';
+import Footer from '../Footer/Footer';
 
 function Main() {
 
@@ -15,6 +16,7 @@ function Main() {
             <Techs />
             <Me />
             <Portfolio />
+            <Footer />
         </main>
     )
 }

@@ -7,19 +7,19 @@ function Portfolio() {
                 <li>
                     <a className='portfolio__site' href='https://github.com/chashchinavera/how-to-learn' target='_blank'
             rel='noopener noreferrer'>Статичный сайт
-                        <button className='portfolio__button' />
+                        <button className='portfolio__button' aria-label='Ссылка на статичный сайт' type='button' />
                     </a>
                 </li>
                 <li>
                     <a className='portfolio__site' href='https://github.com/chashchinavera/russian-travel' target='_blank'
             rel='noopener noreferrer'>Адаптивный сайт
-                        <button className='portfolio__button' />
+                        <button className='portfolio__button' aria-label='Ссылка на адаптивный сайт' type='button' />
                     </a>
                 </li>
                 <li>
                     <a className='portfolio__site' href='https://github.com/chashchinavera/react-mesto-api-full-gha' target='_blank'
             rel='noopener noreferrer'>Одностраничное приложение
-                        <button className='portfolio__button' />
+                        <button className='portfolio__button' aria-label='Ссылка на одностраничное приложение' type='button' />
                     </a>
                 </li>
             </ul>
