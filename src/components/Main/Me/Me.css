@@ -68,6 +68,11 @@
     margin: 120px 0 0;
 }
 
+.me_link:hover {
+    opacity: 50%;
+    transition: 0.5s linear;
+}
+
 .me__photo {
     margin: 65px 0 0 270px;
     padding: 0;

@@ -28,7 +28,7 @@
 
 .header__register:hover {
     opacity: 50%;
-    transition: 0,5s linear;
+    transition: 0.5s linear;
 }
 
 .header__login {
@@ -46,5 +46,5 @@
 
 .header__login:hover {
     opacity: 50%;
-    transition: 0,5s linear;
+    transition: 0.5s linear;
 }

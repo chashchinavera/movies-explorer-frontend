@@ -27,3 +27,6 @@
 
 /*me*/
 @import url(./components/Main/Me/Me.css);
+
+/*portfolio*/
+@import url(./components/Main/Portfolio/Portfolio.css);

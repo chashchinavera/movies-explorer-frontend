@@ -3,6 +3,7 @@ import Promo from '../Main/Promo/Promo';
 import Project from '../Main/Project/Project';
 import Techs from './Techs/Techs';
 import Me from './Me/Me';
+import Portfolio from './Portfolio/Portfolio';
 
 function Main() {
 
@@ -13,6 +14,7 @@ function Main() {
             <Project />
             <Techs />
             <Me />
+            <Portfolio />
         </main>
     )
 }

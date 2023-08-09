@@ -13,12 +13,14 @@
     letter-spacing: -0.88px;
     border-bottom: #DADADA solid 1px;
     padding-bottom: 10px;
+    margin: 22px 0 0;
+    padding: 0;
 }
 
 .project__about {
     display: flex;
     justify-content: space-between;
-    margin-top: 34px;
+    margin-top: 93px;
 }
 
 .project__subtitle {
@@ -28,6 +30,8 @@
     line-height: normal;
     letter-spacing: -0.8px;
     max-width: 550px;
+    margin: 0;
+    padding: 0;
 }
 
 .project__text {
@@ -36,6 +40,8 @@
     font-weight: 400;
     max-width: 550px;
     line-height: 20px;
+    margin: 26px 0 0;
+    padding: 0;
 }
 
 .project__plan {
@@ -43,13 +49,14 @@
     grid-template-columns: 1fr 4fr;
     grid-template-rows: repeat(2, auto);
     text-align: center;
-    margin-top: 97px;
+    margin-top: 110px;
     font-size: 14px;
 }
 
 .project__period {
     background-color: #3DDC84;
     padding: 9px 0;
+    margin: 0;
     margin: 0;
     color: #000;
     font-weight: 400;
@@ -66,4 +73,5 @@
     font-weight: 500;
     line-height: 17px;
     margin: 14px 0 0;
+    padding: 0;
 }
