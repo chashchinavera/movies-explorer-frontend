@@ -9,6 +9,7 @@
     color: #FFF;
     font-size: 22px;
     font-weight: 400;
+    font-style: normal;
     line-height: normal;
     letter-spacing: -0.88px;
     margin: 112px 0 0 0;
@@ -32,6 +33,7 @@
     color: #FFF;
     font-size: 50px;
     font-weight: 400;
+    font-style: normal;
     line-height: 58px;
     letter-spacing: -2px;
     margin: 65px 0 0;
@@ -41,6 +43,7 @@
 .me__about {
     color: #FFF;
     font-size: 18px;
+    font-style: normal;
     font-weight: 500;
     line-height: 20px;
     margin: 20px 0 0;
@@ -51,6 +54,7 @@
     color: #FFF;
     font-size: 14px;
     font-weight: 400;
+    font-style: normal;
     line-height: 22px;
     margin: 25px 0 0;
     padding: 0;
@@ -60,6 +64,7 @@
     color: #FFF;
     font-size: 14px;
     font-weight: 500;
+    font-style: normal;
     line-height: normal;
     text-decoration: none;
     padding: 0;
@@ -81,5 +86,45 @@
 }
 
 @media screen and (max-width: 768px) {
-    
+    .me {
+        padding: 0 50px;
+    }
+
+    .me__title {
+        margin: 91px 0 0 0;
+    }
+
+    .me__column {
+        max-width: 348px;
+    }
+
+    .me__name {
+        font-size: 40px;
+        line-height: 40px;
+        letter-spacing: -1.6px;
+        margin: 66px 0 0;
+        padding: 0;
+    }
+
+    .me__about {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 16px 0 0;
+    }
+
+    .me__text {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 20px 0 0;
+    }
+
+    .me_link {
+        margin: 105px 0 0;
+    }
+
+    .me__photo {
+        margin: 65px 0 0 40px;
+        max-width: 255px;
+        height: 307px;
+    }
 }

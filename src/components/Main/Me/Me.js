@@ -9,7 +9,7 @@ function Me() {
                 <div className='me__column'>
                 <h3 className='me__name'>Вера Чащина</h3>
                 <h4 className='me__about'>Фронтенд-разработчик, 25 лет</h4>
-                <p className='me__text'>Переехала в&nbsp;Санкт-Петербург, получила медицинское образование и потом моя жизнь изменилась - я&nbsp;влюбилась
+                <p className='me__text'>Переехала в&nbsp;Санкт-Петербург в 2018 году, получила медицинское образование и потом моя жизнь изменилась - я&nbsp;влюбилась
                     в&nbsp;веб-разработку. Мне нравится создавать пользовательские интерфейсы, делать их функциональными и удобными.</p>
                 <a className='me_link' href='https://github.com/chashchinavera' target='_blank' rel='noopener noreferrer'>Github</a>
             </div>
