@@ -21,3 +21,6 @@
 
 /*project*/
 @import url(./components/Main/Project/Project.css);
+
+/*techs*/
+@import url(./components/Main/Techs/Techs.css);

@@ -1,8 +1,7 @@
 .promo {
-    width: 100%;
     background-color: #272727;
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 20px 40px 0;
 }
 
 .promo__title {
