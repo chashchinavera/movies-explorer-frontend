@@ -5,7 +5,7 @@ function Promo() {
             <ul className='promo__links'>
             <li><a href="#project" className='promo__button'>О проекте</a></li>
             <li><a href="#techs" className='promo__button'>Технологии</a></li>
-            <li><a href="#" className='promo__button'>Студент</a></li>
+            <li><a href="#me" className='promo__button'>Студент</a></li>
             </ul>
         </section>
     )
