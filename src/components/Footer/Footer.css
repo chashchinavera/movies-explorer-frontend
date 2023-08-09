@@ -1,7 +1,7 @@
 .footer {
     display: flex;
     flex-direction: column;
-    margin: 161px 0 20px;
+    margin: 164px 0 20px;
     padding: 0 70px;
 }
 
@@ -45,4 +45,11 @@
     line-height: normal;
     margin: 20px 0 0 20px;
     padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        margin: 129px 0 20px;
+        padding: 0 30px;
+    }
 }
