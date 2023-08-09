@@ -56,11 +56,47 @@
     width: 90px;
     color: #FFF;
     text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.56px;
     background-color: #303030;
     padding: 22px 0;
     margin: 0 5px 30px 5px;
     border-radius: 10px;
+}
+
+@media screen and (max-width:768px) {
+    .techs {
+        margin: 12px 0 0;
+        padding: 0 50px;
+    }
+
+    .techs__subtitle {
+        margin: 80px 0 0;
+    }
+
+    .techs__text {
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: -0.48px;
+        margin: 22px auto 83px;
+    }
+
+    .techs__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        list-style: none;
+        margin: 0 0 60px;
+    }
+
+    .techs__technology {
+        width: 84px;
+        padding: 21px 0;
+        margin: 0 5px 30px 5px;
+        font-size: 12px;
+        letter-spacing: -0.48px;
+    }
 }
