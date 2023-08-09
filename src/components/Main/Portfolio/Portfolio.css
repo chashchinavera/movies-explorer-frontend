@@ -21,11 +21,12 @@
     color: #FFF;
     font-size: 30px;
     font-weight: 400;
+    font-style: normal;
     line-height: 50px;
     letter-spacing: -1.2px;
     border-bottom: #424242 solid 1px;
     margin: 0 0 20px;
-    padding: 0 0 20px;
+    padding: 0 0 19px;
     display: block;
     position: relative;
     cursor: pointer;
@@ -35,6 +36,10 @@
 .portfolio__site:hover {
     opacity: 50%;
     transition: 0.5s linear;
+}
+
+.portfolio__site_last {
+    border-bottom: none;
 }
 
 .portfolio__button {
@@ -49,4 +54,25 @@
     height: 52px;
     border: none;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .portfolio {
+        padding: 0 50px;
+    }
+
+    .portfolio__title {
+        margin: 91px 0 50px;
+    }
+
+    .portfolio__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .portfolio__site {
+        font-size: 28px;
+        letter-spacing: -1.12px;
+    }
 }

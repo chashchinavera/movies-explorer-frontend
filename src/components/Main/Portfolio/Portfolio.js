@@ -17,7 +17,7 @@ function Portfolio() {
                     </a>
                 </li>
                 <li>
-                    <a className='portfolio__site' href='https://github.com/chashchinavera/react-mesto-api-full-gha' target='_blank'
+                    <a className='portfolio__site portfolio__site_last' href='https://github.com/chashchinavera/react-mesto-api-full-gha' target='_blank'
             rel='noopener noreferrer'>Одностраничное приложение
                         <button className='portfolio__button' aria-label='Ссылка на одностраничное приложение' type='button' />
                     </a>
