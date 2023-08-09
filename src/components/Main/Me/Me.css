@@ -19,6 +19,7 @@
 .me__columns {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .me__column {
@@ -35,7 +36,6 @@
     letter-spacing: -2px;
     margin: 65px 0 0;
     padding: 0;
-    max-width: 600px;
 }
 
 .me__about {
@@ -45,7 +45,6 @@
     line-height: 20px;
     margin: 20px 0 0;
     padding: 0;
-    max-width: 600px;
 }
 
 .me__text {
@@ -53,7 +52,6 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    max-width: 600px;
     margin: 25px 0 0;
     padding: 0;
 }
@@ -74,10 +72,14 @@
 }
 
 .me__photo {
-    margin: 65px 0 0 270px;
+    margin: 65px 0 0 50px;
     padding: 0;
     max-width: 270px;
     height: 327px;
     object-fit: cover;
     border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    
 }
