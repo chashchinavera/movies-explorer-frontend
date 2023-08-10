@@ -13,7 +13,7 @@ function Me() {
                     в&nbsp;веб-разработку. Мне нравится создавать пользовательские интерфейсы, делать их функциональными и удобными.</p>
                 <a className='me_link' href='https://github.com/chashchinavera' target='_blank' rel='noopener noreferrer'>Github</a>
             </div>
-            <img className='me__photo' alt='Фото создателя этой страницы' src={photo}/>
+            <img className='me__photo' alt='Фото создателя этой страницы' src={photo} />
             </div>
         </section>
     )
