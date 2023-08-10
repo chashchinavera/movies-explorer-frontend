@@ -1,7 +1,6 @@
 .techs {
     background-color: #272727;
-    margin: 50px 0;
-    padding: 0 70px;
+    padding: 50px 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
