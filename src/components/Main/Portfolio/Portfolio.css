@@ -6,6 +6,7 @@
     color: #8B8B8B;
     font-size: 18px;
     font-weight: 400;
+    font-style: normal;
     line-height: 20px;
     margin: 20px 0 0;
     padding: 0;
@@ -47,6 +48,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
+    background-size: contain;
     position: absolute;
     top: 0;
     right: 0;
@@ -74,5 +76,42 @@
     .portfolio__site {
         font-size: 28px;
         letter-spacing: -1.12px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .portfolio {
+        padding: 14px 14px 35px;
+    }
+
+    .portfolio__title {
+        color: #A0A0A0;
+        font-size: 14px;
+        margin: 20px 0 41px;
+    }
+
+    .portfolio__list {
+        margin: 0 0 55px;
+    }
+
+    .portfolio__site {
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: -0.72px;
+        border-bottom: #E6E6E6 solid 1px;
+        margin: 0 0 21px;
+        padding: 0 0 18px;
+    }
+
+    .portfolio__button {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        width: 10px;
+        height: 19px;
+    }
+
+    .portfolio__site_last {
+        border-bottom: none;
     }
 }
