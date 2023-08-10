@@ -87,11 +87,11 @@
 
 @media screen and (max-width: 768px) {
     .me {
-        padding: 0 50px;
+        padding: 45px 50px;
     }
 
     .me__title {
-        margin: 91px 0 0 0;
+        margin: 45px 0 33px 0;
     }
 
     .me__column {
@@ -102,28 +102,28 @@
         font-size: 40px;
         line-height: 40px;
         letter-spacing: -1.6px;
-        margin: 66px 0 0;
+        margin: 33px 0 8px;
         padding: 0;
     }
 
     .me__about {
         font-size: 12px;
         line-height: 18px;
-        margin: 16px 0 0;
+        margin: 8px 0 10px;
     }
 
     .me__text {
         font-size: 12px;
         line-height: 18px;
-        margin: 20px 0 0;
+        margin: 10px 0 50px;
     }
 
     .me_link {
-        margin: 105px 0 0;
+        margin: 55px 0 0;
     }
 
     .me__photo {
-        margin: 65px 0 0 40px;
+        margin: 33px 0 0 40px;
         max-width: 255px;
         height: 307px;
     }
