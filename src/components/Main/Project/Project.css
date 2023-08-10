@@ -1,7 +1,7 @@
 .project {
     display: flex;
     flex-direction: column;
-    padding: 88px 30px;
+    padding: 44px 30px;
     margin: 0 40px;
 }
 
@@ -12,14 +12,14 @@
     line-height: normal;
     letter-spacing: -0.88px;
     border-bottom: #DADADA solid 1px;
-    margin: 22px 0 0;
+    margin: 66px 0 40px;
     padding: 0 0 10px;
 }
 
 .project__about {
     display: flex;
     justify-content: space-between;
-    margin-top: 84px;
+    margin: 22px 0 55px;
 }
 
 .project__subtitle {
@@ -29,8 +29,8 @@
     line-height: normal;
     letter-spacing: -0.8px;
     max-width: 550px;
-    margin: 0;
-    padding: 0;
+    margin: 22px 0 0;
+    padding: 0 0 13px;
 }
 
 .project__text {
@@ -39,7 +39,7 @@
     font-weight: 400;
     max-width: 550px;
     line-height: 20px;
-    margin: 26px 0 0;
+    margin: 13px 0 0;
     padding: 0;
 }
 
@@ -48,7 +48,7 @@
     grid-template-columns: 1fr 4fr;
     grid-template-rows: repeat(2, auto);
     text-align: center;
-    margin-top: 110px;
+    margin: 55px 0 44px;
     font-size: 14px;
 }
 
