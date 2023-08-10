@@ -1,6 +1,6 @@
 .techs {
     background-color: #272727;
-    margin: 22px 0 0;
+    margin: 50px 0;
     padding: 0 70px;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.88px;
-    margin: 102px 0 0 0;
+    margin: 52px 0 45px;
     border-bottom: #DADADA solid 1px;
     padding-bottom: 23px;
 }
@@ -26,7 +26,7 @@
     line-height: 58px;
     letter-spacing: -2px;
     padding: 0;
-    margin: 90px 0 0;
+    margin: 45px 0 13px;
 }
 
 .techs__text {
@@ -38,7 +38,7 @@
     letter-spacing: -0.56px;
     max-width: 460px;
     padding: 0;
-    margin: 26px auto 90px;
+    margin: 13px auto 50px;
 }
 
 .techs__list {
@@ -46,7 +46,7 @@
     flex-direction: row;
     justify-content: center;
     list-style: none;
-    margin: 10px 0 70px 0;
+    margin: 50px 0 40px 0;
     padding: 0;
 }
 
@@ -63,7 +63,7 @@
     letter-spacing: -0.56px;
     background-color: #303030;
     padding: 22px 0;
-    margin: 0 5px 30px 5px;
+    margin: 0 5px 10px 5px;
     border-radius: 10px;
 }
 
