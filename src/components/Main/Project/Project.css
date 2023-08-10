@@ -78,32 +78,35 @@
 
 @media screen and (max-width: 768px) {
     .project {
-        padding: 68px 0;
+        padding: 45px 0;
         margin: 0 50px;
     }
 
     .project__title {
+        margin: 45px 0 17px;
         padding: 0 0 23px;
     }
 
     .project__about {
-        margin-top: 70px;
+        margin: 32px 0 55px;
     }
 
     .project__subtitle {
         max-width: 319px;
+        margin: 22px 0 0;
+        padding: 0 0 11px;
     }
 
     .project__text {
         max-width: 319px;
-        margin: 22px 0 0;
         font-size: 12px;
         line-height: 18px;
+        margin: 11px 0 0;
+        padding: 0;
     }
 
     .project__plan {
-        margin-top: 93px;
         grid-template-columns: 140fr 528fr;
-
+        margin: 38px 0 35px;
     }
 }
