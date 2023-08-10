@@ -107,6 +107,6 @@
 
     .project__plan {
         grid-template-columns: 140fr 528fr;
-        margin: 38px 0 35px;
+        margin: 38px 0 47px;
     }
 }
