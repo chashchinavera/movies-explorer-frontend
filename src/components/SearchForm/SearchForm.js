@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function SearchForm() {
 
-    const [ switchOnButton, setSwitchOnButton ] = useState(false);
+    const [switchOnButton, setSwitchOnButton] = useState(false);
 
     function handleToggleSwitch() {
         setSwitchOnButton(!switchOnButton);
@@ -12,18 +12,21 @@ function SearchForm() {
         <section className='search'>
             <div className='search__movie'>
                 <input
-                    className="search__input"
-                    type="text"
-                    placeholder="Фильм"
+                    className='search__input'
+                    type='text'
+                    placeholder='Фильм'
                     required />
-                <button className="search__submit" />
+                <button className='search__submit' type='button' aria-label='Поиск фильмов' />
 
             </div>
             <div className='search__shorts'>
-                <button className={`search__switch-button ${switchOnButton ? 'search__switch-on' : ''}`}
-                onClick={handleToggleSwitch}
+                <button
+                    className={`search__switch-button ${switchOnButton ? 'search__switch-on' : ''}`}
+                    type='button'
+                    aria-label='Поиск короткометражек'
+                    onClick={handleToggleSwitch}
                 />
-                <p className="search__text">Короткометражки</p>
+                <p className='search__text'>Короткометражки</p>
             </div>
         </section>
 
