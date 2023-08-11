@@ -33,3 +33,6 @@
 
 /*portfolio*/
 @import url(./components/Main/Portfolio/Portfolio.css);
+
+/*navigation*/
+@import url(./components/Navigation/Navigation.css);

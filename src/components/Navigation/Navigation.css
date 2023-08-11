@@ -1,0 +1,35 @@
+.navigation {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.navigation__movies {
+    display: flex;
+    margin: 0 auto;
+    padding: 0 0 0 64px;
+}
+
+.navigation__link {
+    color: #FFF;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    text-decoration: none;
+    padding: 0;
+    margin: 29px 8px 0;
+}
+
+.navigation__movie {
+    font-weight: 400;
+}
+
+.navigation__account {
+    font-size: 14px;
+    line-height: 16px;
+    border-radius: 20px;
+    background-color: #313131;
+    padding: 8px 22px;
+    margin: 21px 70px 21px 0;
+}

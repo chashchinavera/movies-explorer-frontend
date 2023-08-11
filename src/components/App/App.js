@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
             />
             <Route
                 path='/movies'
+                element={<Movies/>}
             />
             <Route
                 path='/saved-movies'
