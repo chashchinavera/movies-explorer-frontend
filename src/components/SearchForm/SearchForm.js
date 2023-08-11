@@ -9,7 +9,7 @@ function SearchForm() {
     }
 
     return (
-        <div className='search'>
+        <section className='search'>
             <div className='search__movie'>
                 <input
                     className="search__input"
@@ -25,7 +25,7 @@ function SearchForm() {
                 />
                 <p className="search__text">Короткометражки</p>
             </div>
-        </div>
+        </section>
 
     )
 }
