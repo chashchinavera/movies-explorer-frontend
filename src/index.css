@@ -36,3 +36,6 @@
 
 /*navigation*/
 @import url(./components/Navigation/Navigation.css);
+
+/*searchForm*/
+@import url(./components/SearchForm/SearchForm.css);

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Header from '../Header/Header';
+import SearchForm from '../SearchForm/SearchForm';
 
 function Movies() {
 
@@ -10,6 +11,7 @@ function Movies() {
             <Header 
             loggedIn={loggedIn}
             />
+            <SearchForm />
         </div>
     )
 }
