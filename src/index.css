@@ -34,8 +34,17 @@
 /*portfolio*/
 @import url(./components/Main/Portfolio/Portfolio.css);
 
+/*movies*/
+@import url(./components/Movies/Movies.css);
+
 /*navigation*/
 @import url(./components/Navigation/Navigation.css);
 
 /*searchForm*/
 @import url(./components/SearchForm/SearchForm.css);
+
+/*moviesCardList*/
+@import url(./components/MoviesCardList/MoviesCardList.css);
+
+/*moviesCard*/
+@import url(./components/MoviesCard/MoviesCard.css);
