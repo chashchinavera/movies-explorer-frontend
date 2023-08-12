@@ -138,17 +138,13 @@
     }
 
     .header__burger {
-        padding: 0;
         margin: 18px 23px 0 0;
-        position: relative;
-        display: block;
         width: 28px;
         height: 39px;
-        background-image: url(./../../images/header__burger.svg);
-        background-color: transparent;
-        background-size: cover;
-        border: none;
-        cursor: pointer;
-        z-index: 2;
+    }
+
+    .header__close {
+        top: 13px;
+        right: 13px;
     }
 }
