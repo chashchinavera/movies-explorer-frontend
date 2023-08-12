@@ -41,7 +41,7 @@
 
 @media screen and (max-width: 550px) {
     .movies__list {
-        margin: 40px 0 0;
+        margin: 40px 0 0px;
     }
 
     .movies__cards {
@@ -51,7 +51,7 @@
     }
 
     .movies__more {
-        margin: 60px auto 120px;
+        margin: 61px auto 119px;
         padding: 10px 10px 9px;
         width: 240px;
     }
