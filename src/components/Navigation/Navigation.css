@@ -38,3 +38,9 @@
     opacity: 50%;
     transition: 0.5s linear;
 }
+
+@media screen and (max-width: 1000px) {
+    .navigation {
+        display: none;
+    }
+}

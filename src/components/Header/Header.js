@@ -13,7 +13,14 @@ function Header({ loggedIn }) {
                     <Link to='/signin' className='header__login'>Войти</Link>
                 </div >
             ) : (
-                <Navigation />
+                <>
+                    <button className='header__burger' />
+
+                    <div className='header__overlay'>
+
+                        <Navigation />
+                    </div>
+                </>
             )
             }
         </header >
