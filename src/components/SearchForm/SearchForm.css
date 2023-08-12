@@ -18,6 +18,7 @@
     padding: 16px 20px;
     color: #8B8B8B;
     font-size: 14px;
+    font-weight: 400;
     font-style: normal;
     line-height: 18px;
 }
@@ -31,7 +32,8 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
-    background-size: contain;
+    background-size: cover;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
 }
@@ -105,5 +107,36 @@
         flex-direction: row;
         justify-content: center;
         margin: 41px 0 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .search {
+        margin: 80px 14px 10px;
+        padding: 0 0 40px;
+        border-bottom: #424242 1px solid;
+    }
+    
+    .search__input {
+        padding: 13px;
+        line-height: normal;
+    }
+    
+    .search__submit {
+        width: 55px;
+        height: 44px;
+    }
+
+    .search__shorts {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 47px 0 0;
+    }
+
+    .search__text {
+        margin: 0 0 0 12px;
+        padding: 0;
+        font-size: 11px;
     }
 }
