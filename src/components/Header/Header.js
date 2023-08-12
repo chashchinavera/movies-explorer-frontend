@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import logo from '../../images/header__logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 function Header({ loggedIn }) {
@@ -13,7 +12,7 @@ function Header({ loggedIn }) {
 
     return (
         <header className='header'>
-            <Link to='/'><img className='header__logo' src={logo} alt='Логотип Movies' /></Link>
+            <Link to='/' className='header__logo' />
             {!loggedIn ? (
                 <div className='header__links'>
                     <Link to='/signup' className='header__register'>Регистрация</Link>
