@@ -49,21 +49,33 @@
     transition: 0.5s linear;
 }
 
+.header__overlay {
+    display: block;
+    width: 100%;
+}
+
+.header__burger {
+    display: none;
+}
+
+.header__close {
+    display: none;
+}
+
 @media screen and (max-width: 1000px) {
     .header__overlay {
-        display: block;
         position: absolute;
         top: 0;
-        left: 0;
-        width: 100%;
+        right: 0;
         height: 100vh;
         background-color: rgba(0, 0, 0, .3);
+        visibility: hidden;
         opacity: 0;
-        transition: opacity 0.5s linear;
     }
 
     .header__overlay_active {
         opacity: 1;
+        visibility: visible;
     }
 
     .header__burger {
@@ -78,11 +90,23 @@
         background-position: cover;
         border: none;
         cursor: pointer;
-        z-index: 4;
+        z-index: 2;
     }
 
-        .header__burger_active {
-
+    .header__close {
+        display: block;
+        position: absolute;
+        top: 22px;
+        right: 22px;
+        background-image: url(./../../images/header__close.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: transparent;
+        border: none;
+        z-index: 4;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
     }
 }
 

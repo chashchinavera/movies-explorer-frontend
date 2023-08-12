@@ -2,6 +2,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    height: auto;
 }
 
 .navigation__movies {
@@ -39,8 +40,62 @@
     transition: 0.5s linear;
 }
 
+.navigation__main {
+    display: none;
+}
+
 @media screen and (max-width: 1000px) {
     .navigation {
-        display: none;
+        max-width: 520px;
+        background-color: #202020;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 3;
+        flex-direction: column;
+        padding: 0 0 90px;
+    }
+
+    .navigation__movies {
+        flex-direction: column;
+        padding: 0;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .navigation__main {
+        display: block;
+        color: #FFF;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding: 0;
+        margin: 160px 0 9px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .navigation__link {
+        text-align: center;
+        font-size: 18px;
+        line-height: normal;
+        padding: 0 0 4px;
+        margin: 21px auto 1px;
+    }
+
+    .navigation__account {
+        font-size: 14px;
+        line-height: 16px;
+        border-radius: 20px;
+        background-color: #313131;
+        padding: 8px 22px;
+        margin: 0 auto;
+    }
+
+    .navigation__underline {
+        border-bottom: #FFF 2px solid;
     }
 }
