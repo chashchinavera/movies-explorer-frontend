@@ -88,3 +88,22 @@
     font-weight: 400;
     line-height: 18px;
 }
+
+@media screen and (max-width: 1000px) {
+    .search {
+        margin: 80px 30px 10px 30px;
+        padding: 0 0 40px;
+    }
+
+    .search__submit {
+        width: 49px;
+        height: 49px;
+    }
+
+    .search__shorts {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 41px 0 0;
+    }
+}
