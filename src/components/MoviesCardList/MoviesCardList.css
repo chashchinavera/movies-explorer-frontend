@@ -26,3 +26,9 @@
     border-radius: 5px;
     border: #424242 1px solid;
 }
+
+@media screen and (max-width: 1000px) {
+    .movies__cards {
+        gap: 47px 30px;
+    }
+}
