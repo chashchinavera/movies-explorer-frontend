@@ -77,3 +77,18 @@
     border-radius: 3px;
     background: #2F2F2F;
 }
+
+@media screen and (max-width: 1000px) {
+    .movie__image {
+        width: 339px;
+        height: 190px;
+    }
+
+    .movie__title {
+        margin: 25px 0 0 0;
+    }
+
+    .movie__duration {
+        margin: 25px 0 0 0;
+    }
+}
