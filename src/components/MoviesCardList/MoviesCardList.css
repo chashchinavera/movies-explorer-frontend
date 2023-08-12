@@ -32,4 +32,9 @@
         grid-template-columns: repeat(auto-fit, 339px);
         gap: 47px 30px;
     }
+
+    .movies__more {
+        margin: 58px auto 99px;
+        padding: 10px 10px 9px;
+    }
 }
