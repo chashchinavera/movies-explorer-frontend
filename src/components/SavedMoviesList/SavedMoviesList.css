@@ -1,0 +1,18 @@
+.save__list {
+    margin: 70px 0 242px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .save__list {
+        margin: 70px 0 194px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .save__list {
+        margin: 40px 0 189px;
+    }
+}

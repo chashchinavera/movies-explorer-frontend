@@ -9,6 +9,7 @@
     width: 38px;
     height: 38px;
     margin: 18px 0 18px 70px;
+    padding: 0 2px 0 0;
     background-image: url(./../../images/header__logo.svg);
 }
 
@@ -100,8 +101,9 @@
         right: 22px;
         background-image: url(./../../images/header__close.svg);
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         background-color: transparent;
+        background-position: center;
         border: none;
         z-index: 4;
         width: 32px;
@@ -138,9 +140,9 @@
     }
 
     .header__burger {
-        margin: 18px 23px 0 0;
-        width: 28px;
-        height: 39px;
+        margin: 16px 14px 0 0;
+        width: 40px;
+        height: 43px;
     }
 
     .header__close {

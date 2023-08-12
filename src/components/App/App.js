@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
 
 function App() {
 
@@ -17,9 +19,11 @@ function App() {
             />
             <Route
                 path='/saved-movies'
+                element={<SavedMovies />}
             />
             <Route
                 path='/profile'
+                element={<Profile />}
             />
             <Route
                 path='/signin'

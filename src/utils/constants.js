@@ -1,5 +1,5 @@
-export function movieDuration({duration}) {
-    let hours = Math.trunc(duration/60);
+export function movieDuration({ duration }) {
+    let hours = Math.trunc(duration / 60);
     let minutes = duration % 60;
     return hours + 'ч ' + minutes + 'м';
 };
@@ -43,6 +43,48 @@ export const initialCards = [
         movieId: 108,
         nameRU: 'Назад в будущее',
         nameEN: 'Back to the Future',
+    },
+    {
+        country: 'США',
+        director: 'Эндрю Адамсон',
+        duration: 90,
+        year: 2001,
+        description: 'Огр-мизантроп спасает принцессу, чтобы вернуть свое болото. Революционная анимация о том, что красота — внутри.',
+        image: 'https://www.kino-teatr.ru/movie/posters/big/4/36504.jpg',
+        trailerLink: 'https://www.kinopoisk.ru',
+        thumbnail: 'https://www.kinopoisk.ru',
+        movieId: 109,
+        nameRU: 'Шрэк',
+        nameEN: 'Shrek',
+    },
+    {
+        country: 'США',
+        director: 'Эндрю Стэнтон',
+        duration: 98,
+        year: 2008,
+        description: 'Робот ВАЛЛ·И из года в год прилежно трудится на опустевшей Земле, очищая нашу планету от гор мусора, которые оставили после себя улетевшие в космос люди. Он и не представляет, что совсем скоро произойдут невероятные события, благодаря которым он встретит друзей, поднимется к звездам и даже сумеет изменить к лучшему своих бывших хозяев, совсем позабывших родную Землю.',
+        image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/146b1b20-347b-4b6a-98c8-fdc2c75495cb/300x450',
+        trailerLink: 'https://www.kinopoisk.ru',
+        thumbnail: 'https://www.kinopoisk.ru',
+        movieId: 110,
+        nameRU: 'ВАЛЛ·И ',
+        nameEN: 'WALL·E',
+    },
+];
+
+export const savedCards = [
+    {
+        country: 'США',
+        director: 'Роджер Аллерс',
+        duration: 88,
+        year: 1994,
+        description: 'У величественного Короля-Льва Муфасы рождается наследник по имени Симба. Уже в детстве любознательный малыш становится жертвой интриг своего завистливого дяди Шрама, мечтающего о власти.',
+        image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/60aa1abc-b754-4817-ad9c-0bcda427a12b/300x450',
+        trailerLink: 'https://www.kinopoisk.ru',
+        thumbnail: 'https://www.kinopoisk.ru',
+        movieId: 107,
+        nameRU: 'Король Лев',
+        nameEN: 'The Lion King',
     },
     {
         country: 'США',

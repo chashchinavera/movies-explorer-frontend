@@ -101,6 +101,10 @@
 }
 
 @media screen and (max-width: 500px) {
+    .navigation {
+        max-width: 320px;
+    }
+
     .navigation__main {
         margin: 145px 0 10px;
     }

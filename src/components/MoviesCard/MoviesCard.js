@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { movieDuration } from "../../utils/constants";
 
-function MoviesCard({ name, image, duration }) {
+function MoviesCard({ name, image, duration, cardButton }) {
 
     const [saveButton, setSaveButton] = useState(false);
 
-    function handleButtonSave() {
+    function handleSaveButton() {
         setSaveButton(!saveButton);
     }
 
@@ -13,12 +13,12 @@ function MoviesCard({ name, image, duration }) {
         <div className='movie'>
             <img className='movie__image' alt={name} src={image} />
             <button
-                className={`movie__button ${saveButton ? 'movie__button_active' : ''}`}
+                className={`movie__button ${cardButton.state ? 'movie__delete' : ''} ${!cardButton.state && saveButton ? 'movie__button_active' : ''}`}
                 type='button'
                 aria-label='Сохранить'
-                onClick={handleButtonSave}
+                onClick={handleSaveButton}
             >
-                {!saveButton ? 'Сохранить' : ''}
+                {!cardButton.state && !saveButton ? 'Сохранить' : ''}
             </button>
             <div className='movie__info'>
                 <p className='movie__title'>{name}</p>

@@ -23,7 +23,7 @@ function Movies() {
             />
             <SearchForm />
             <MoviesCardList 
-            initialCards={cards}
+            cards={initialCards}
             />
             <Footer />
         </div>
