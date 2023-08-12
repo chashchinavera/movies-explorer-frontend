@@ -38,3 +38,21 @@
         padding: 10px 10px 9px;
     }
 }
+
+@media screen and (max-width: 550px) {
+    .movies__list {
+        margin: 40px 0 0;
+    }
+
+    .movies__cards {
+        grid-template-columns: repeat(auto-fit, 300px);
+        grid-template-rows: repeat(auto-fit, 201px);
+        gap: 36px 30px;
+    }
+
+    .movies__more {
+        margin: 60px auto 120px;
+        padding: 10px 10px 9px;
+        width: 240px;
+    }
+}

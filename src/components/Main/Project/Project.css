@@ -71,6 +71,7 @@
 
 .project__caption {
     color: #8B8B8B;
+    font-size: 14px;
     font-weight: 500;
     font-style: normal;
     line-height: 17px;
@@ -80,7 +81,7 @@
 
 @media screen and (max-width: 768px) {
     .project {
-        padding: 45px 0;
+        padding: 46px 0 44px;
         margin: 0 50px;
     }
 
@@ -90,7 +91,7 @@
     }
 
     .project__about {
-        margin: 32px 0 55px;
+        margin: 31px 0 55px;
     }
 
     .project__subtitle {
@@ -110,11 +111,16 @@
         grid-template-columns: 140fr 528fr;
         margin: 38px 0 47px;
     }
+
+    .project__caption {
+        font-weight: 400;
+        color: #A0A0A0;
+    }
 }
 
 @media screen and (max-width: 500px) {
     .project {
-        padding: 35px 0;
+        padding: 36px 0;
         margin: 0 18px;
     }
 
@@ -135,7 +141,7 @@
         font-size: 18px;
         letter-spacing: -0.72px;
         max-width: 284px;
-        margin: 58px 0 0;
+        margin: 57px 0 0;
         padding: 0 0 8px;
     }
 
@@ -143,7 +149,7 @@
         font-size: 11px;
         max-width: 550px;
         line-height: 16px;
-        margin: 8px 0 0;
+        margin: 9px 0 0;
     }
 
     .project__plan {
@@ -157,8 +163,9 @@
     }
 
     .project__caption {
-        font-weight: 400;
         line-height: normal;
-        margin: 10px 0 0;
+        margin: 8px 0 0;
+        font-size: 11px;
+        line-height: normal;
     }
 }

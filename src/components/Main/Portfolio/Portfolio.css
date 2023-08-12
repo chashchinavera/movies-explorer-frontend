@@ -1,5 +1,5 @@
 .portfolio {
-    padding: 30px 70px 50px;
+    padding: 33px 70px 51px;
 }
 
 .portfolio__title {
@@ -50,21 +50,21 @@
     background-color: transparent;
     background-size: contain;
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 29px;
-    height: 52px;
+    top: 15px;
+    right: 7px;
+    width: 18px;
+    height: 26px;
     border: none;
     cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
     .portfolio {
-        padding: 26px 50px 50px;
+        padding: 25px 50px 50px;
     }
 
     .portfolio__title {
-        margin: 20px 0 50px;
+        margin: 20px 0 49px;
     }
 
     .portfolio__list {
@@ -76,6 +76,18 @@
     .portfolio__site {
         font-size: 28px;
         letter-spacing: -1.12px;
+        border-bottom: #E6E6E6 solid 1px;
+    }
+
+    .portfolio__site_last {
+        border-bottom: none;
+    }
+
+    .portfolio__button {
+        top: 15px;
+        right: 5px;
+        width: 17px;
+        height: 25px;
     }
 }
 

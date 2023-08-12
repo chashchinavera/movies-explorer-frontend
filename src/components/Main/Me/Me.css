@@ -1,6 +1,6 @@
 .me {
     background-color: #202020;
-    padding: 50px 70px;
+    padding: 48px 70px;
     display: flex;
     flex-direction: column;
 }
@@ -87,7 +87,7 @@
 
 @media screen and (max-width: 768px) {
     .me {
-        padding: 45px 50px;
+        padding: 46px 50px;
     }
 
     .me__title {
