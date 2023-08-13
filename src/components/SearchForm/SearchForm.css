@@ -6,7 +6,7 @@
     border-bottom: #424242 1px solid;
 }
 
-.search__movie {
+.search__form {
     display: flex;
 }
 
@@ -36,6 +36,11 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+}
+
+.search__submit:hover {
+    opacity: 50%;
+    transition: 0.5s linear;
 }
 
 .search__shorts {

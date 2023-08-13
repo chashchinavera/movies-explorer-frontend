@@ -70,13 +70,14 @@
 
 @media screen and (max-width: 1000px) {
     .header__overlay {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         height: 100vh;
         background-color: rgba(0, 0, 0, .3);
         visibility: hidden;
         opacity: 0;
+        z-index: 3;
     }
     
     .header__overlay_active {

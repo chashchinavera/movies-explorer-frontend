@@ -4,7 +4,8 @@ function Register() {
     const name = 'Виталий';
     const email = 'test@test.ru'
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault();
         console.log('Вы зарегистрировались')
     }
 
