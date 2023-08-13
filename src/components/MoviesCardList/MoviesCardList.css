@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0 70px;
 }
 
 .movies__cards {
@@ -11,6 +12,9 @@
     grid-template-rows: repeat(auto-fit, 231px);
     gap: 60px 30px;
     justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .movies__more {
@@ -28,6 +32,10 @@
 }
 
 @media screen and (max-width: 1000px) {
+    .movies__list {
+        padding: 0 30px;
+    }
+
     .movies__cards {
         grid-template-columns: repeat(auto-fit, 339px);
         gap: 47px 30px;
@@ -42,6 +50,7 @@
 @media screen and (max-width: 550px) {
     .movies__list {
         margin: 40px 0 0px;
+        padding: 0 10px;
     }
 
     .movies__cards {
