@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
+    height: auto;
 }
 
 .unfound__error {
@@ -13,6 +14,7 @@
     line-height: normal;
     margin: 246px 0 0;
     padding: 0;
+    text-align: center;
 }
 
 .unfound__text {
@@ -41,5 +43,22 @@
 @media screen and (max-width: 900px) {
     .unfound__error {
         margin: 408px 0 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .unfound__error {
+        margin: 329px 0 0;
+        font-size: 80px;
+    }
+
+    .unfound__text {
+        font-size: 12px;
+        margin: 10px 0 0;
+    }
+
+    .unfound__link {
+        font-size: 12px;
+        margin: 284px 0 0;
     }
 }
