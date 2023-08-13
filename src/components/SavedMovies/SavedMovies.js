@@ -17,7 +17,7 @@ function SavedMovies() {
     }, [loggedIn])
 
     return (
-        <div className='movies'>
+        <main className='movies'>
             <Header
                 loggedIn={loggedIn}
                 theme={{ short: false }}
@@ -27,7 +27,7 @@ function SavedMovies() {
                 cards={savedCards}
             />
             <Footer />
-        </div>
+        </main>
     )
 }
 

@@ -17,7 +17,7 @@ function Movies() {
   }, [loggedIn])
 
   return (
-    <div className='movies'>
+    <main className='movies'>
       <Header
         theme={{ short: false }}
         loggedIn={loggedIn}
@@ -27,7 +27,7 @@ function Movies() {
         cards={initialCards}
       />
       <Footer />
-    </div>
+    </main>
   )
 }
 
