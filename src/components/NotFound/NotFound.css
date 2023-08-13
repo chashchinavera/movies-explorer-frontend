@@ -37,3 +37,9 @@
     text-decoration: none;
     text-align: center;
 }
+
+@media screen and (max-width: 900px) {
+    .unfound__error {
+        margin: 408px 0 0;
+    }
+}
