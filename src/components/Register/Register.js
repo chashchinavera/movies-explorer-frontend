@@ -8,10 +8,6 @@ function Register() {
         console.log('Вы зарегистрировались')
     }
 
-    function handleSignIn() {
-        console.log('Войти')
-    }
-
     return (
         <section className='register'>
             <div className='register__components'>
@@ -75,13 +71,7 @@ function Register() {
                 </button>
                 <div className='register__question'>
                     <p className='register__signature'>Уже зарегистрированы?
-                        <button
-                            type='button'
-                            aria-label='Войти'
-                            className='register__entry'
-                            onClick={handleSignIn}>
-                            Войти
-                        </button>
+                        <a href='/signin' className='register__entry'>Войти</a>
                     </p>
                 </div>
             </div>
