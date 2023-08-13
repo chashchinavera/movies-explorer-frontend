@@ -14,13 +14,21 @@
     letter-spacing: -0.88px;
     border-bottom: #DADADA solid 1px;
     margin: 66px 0 40px;
-    padding: 0 0 10px;
+    padding: 0 0 23px;
 }
 
 .project__about {
     display: flex;
     justify-content: space-between;
-    margin: 22px 0 55px;
+    margin: 9px 0 55px;
+}
+
+.project__block {
+    margin: 0 40px 0 0;
+}
+
+.project__block:nth-child(2) {
+    margin: 0;
 }
 
 .project__subtitle {
@@ -94,6 +102,10 @@
         margin: 31px 0 55px;
     }
 
+    .project__block {
+        margin: 0 30px 0 0;
+    }
+
     .project__subtitle {
         max-width: 319px;
         margin: 22px 0 0;
@@ -137,6 +149,11 @@
         margin: 2px 0 30px;
     }
 
+
+    .project__block {
+        margin: 0;
+    }
+    
     .project__subtitle {
         font-size: 18px;
         letter-spacing: -0.72px;
