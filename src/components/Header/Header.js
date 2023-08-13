@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ loggedIn }) {
+function Header({ loggedIn, theme }) {
 
     const [openBurgerButton, setOpenBurgerButton] = useState(false);
 
@@ -12,8 +12,8 @@ function Header({ loggedIn }) {
 
     return (
         <header className='header'>
-            <Link to='/' className='header__logo' />
-            {!loggedIn ? (
+            <Link to='/' className={`header__logo ${theme.short ? 'header__logo_short' : ''}`} />
+            {!theme.short && (!loggedIn ? (
                 <div className='header__links'>
                     <Link to='/signup' className='header__register'>Регистрация</Link>
                     <Link to='/signin' className='header__login'>Войти</Link>
@@ -33,6 +33,7 @@ function Header({ loggedIn }) {
                         />
                     </div>
                 </>
+            )
             )
             }
         </header >

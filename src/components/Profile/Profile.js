@@ -28,6 +28,7 @@ function Profile() {
         <section className='profile'>
             <Header
                 loggedIn={loggedIn}
+                theme={{ short: false }}
             />
             <h2 className='profile__hello'>Привет, {name}!</h2>
             <form

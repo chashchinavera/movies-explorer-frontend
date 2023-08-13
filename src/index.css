@@ -54,3 +54,6 @@
 
 /*profile*/
 @import url(./components/Profile/Profile.css);
+
+/*register*/
+@import url(./components/Register/Register.css);

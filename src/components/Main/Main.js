@@ -10,7 +10,7 @@ function Main() {
 
     return (
         <main className="main">
-            <Header />
+            <Header theme={{ short: false }} />
             <Promo />
             <Project />
             <Techs />

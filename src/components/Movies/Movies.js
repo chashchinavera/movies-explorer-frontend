@@ -7,27 +7,28 @@ import Footer from '../Footer/Footer';
 
 function Movies() {
 
-    const [loggedIn, setLoggedIn] = useState(true);
-    const [cards, setCards] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [cards, setCards] = useState([]);
 
-    useEffect(() => {
-        if (loggedIn) {
-          setCards(initialCards);
-        }
-      }, [loggedIn])
+  useEffect(() => {
+    if (loggedIn) {
+      setCards(initialCards);
+    }
+  }, [loggedIn])
 
-    return (
-        <div className='movies'>
-            <Header 
-            loggedIn={loggedIn}
-            />
-            <SearchForm />
-            <MoviesCardList 
-            cards={initialCards}
-            />
-            <Footer />
-        </div>
-    )
+  return (
+    <div className='movies'>
+      <Header
+        theme={{ short: false }}
+        loggedIn={loggedIn}
+      />
+      <SearchForm />
+      <MoviesCardList
+        cards={initialCards}
+      />
+      <Footer />
+    </div>
+  )
 }
 
 export default Movies;

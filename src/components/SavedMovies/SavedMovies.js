@@ -20,6 +20,7 @@ function SavedMovies() {
         <div className='movies'>
             <Header
                 loggedIn={loggedIn}
+                theme={{ short: false }}
             />
             <SearchForm />
             <SavedMoviesList
