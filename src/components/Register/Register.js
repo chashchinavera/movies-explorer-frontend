@@ -25,7 +25,6 @@ function Register() {
                         <span className='register__text'>Имя</span>
                         <input
                             type='text'
-                            // onChange={}
                             value={name}
                             id='input__name'
                             name='name'
@@ -40,7 +39,6 @@ function Register() {
                         <span className='register__text'>E-mail</span>
                         <input
                             type='text'
-                            // onChange={}
                             value={email}
                             id='input__email'
                             name='email'
@@ -55,7 +53,6 @@ function Register() {
                         <span className='register__text'>Пароль</span>
                         <input
                             type='password'
-                            // onChange={}
                             value={name}
                             id='input__password'
                             name='password'
