@@ -50,6 +50,15 @@
     height: 21px;
 }
 
+.movie__delete {
+    background-image: url(../../images/movie__delete.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 21px;
+    height: 21px;
+}
+
 .movie__info {
     display: flex;
     flex-direction: row;
