@@ -1,0 +1,39 @@
+.unfound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.unfound__error {
+    color: #FFF;
+    font-size: 140px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 246px 0 0;
+    padding: 0;
+}
+
+.unfound__text {
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 5px 0 0;
+    padding: 0;
+    text-align: center;
+}
+
+.unfound__link {
+    color: #4285F4;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 184px 0 0;
+    padding: 0;
+    text-decoration: none;
+    text-align: center;
+}

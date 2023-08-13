@@ -60,3 +60,6 @@
 
 /*login*/
 @import url(./components/Login/Login.css);
+
+/*notFound*/
+@import url(./components/NotFound/NotFound.css);
