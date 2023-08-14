@@ -17,17 +17,19 @@ function SavedMovies() {
     }, [loggedIn])
 
     return (
-        <main className='movies'>
+        <div className='movies'>
             <Header
                 loggedIn={loggedIn}
                 theme={{ short: false }}
             />
-            <SearchForm />
-            <SavedMoviesList
-                cards={savedCards}
-            />
+            <main>
+                <SearchForm />
+                <SavedMoviesList
+                    cards={savedCards}
+                />
+            </main>
             <Footer />
-        </main>
+        </div>
     )
 }
 

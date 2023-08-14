@@ -17,17 +17,19 @@ function Movies() {
   }, [loggedIn])
 
   return (
-    <main className='movies'>
+    <div className='movies'>
       <Header
         theme={{ short: false }}
         loggedIn={loggedIn}
       />
-      <SearchForm />
-      <MoviesCardList
-        cards={initialCards}
-      />
+      <main>
+        <SearchForm />
+        <MoviesCardList
+          cards={initialCards}
+        />
+      </main>
       <Footer />
-    </main>
+    </div>
   )
 }
 

@@ -24,13 +24,13 @@ function SearchForm() {
                     type='text'
                     placeholder='Фильм'
                     required />
-                <button className='search__submit' type='button' aria-label='Поиск фильмов' />
+                <button className='search__submit' type='submit' aria-label='Поиск фильмов' />
 
             </form>
             <div className='search__shorts'>
                 <button
                     className={`search__switch-button ${switchOnButton ? 'search__switch-on' : ''}`}
-                    type='submit'
+                    type='button'
                     aria-label='Поиск короткометражек'
                     onClick={handleToggleSwitch}
                 />

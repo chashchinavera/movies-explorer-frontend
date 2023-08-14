@@ -9,15 +9,17 @@ import Footer from '../Footer/Footer';
 function Main() {
 
     return (
-        <main className="main">
+        <div className="main">
             <Header theme={{ short: false }} />
-            <Promo />
-            <Project />
-            <Techs />
-            <Me />
-            <Portfolio />
+            <main>
+                <Promo />
+                <Project />
+                <Techs />
+                <Me />
+                <Portfolio />
+            </main>
             <Footer />
-        </main>
+        </div>
     )
 }
 
