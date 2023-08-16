@@ -62,7 +62,7 @@ class Api {
           'Authorization': `Bearer ${jwt}`,
           'Content-Type': 'application/json',
         },
-        method: 'PUT',
+        method: 'POST',
       })
     }
   
