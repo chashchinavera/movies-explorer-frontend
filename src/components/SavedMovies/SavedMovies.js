@@ -5,16 +5,7 @@ import SavedMoviesList from '../SavedMoviesList/SavedMoviesList';
 import SearchForm from "../SearchForm/SearchForm";
 import { savedCards } from '../../utils/constants';
 
-function SavedMovies() {
-
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [cards, setCards] = useState([]);
-
-    useEffect(() => {
-        if (loggedIn) {
-            setCards(savedCards);
-        }
-    }, [loggedIn])
+function SavedMovies({ loggedIn }) {
 
     return (
         <div className='movies'>

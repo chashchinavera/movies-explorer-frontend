@@ -74,6 +74,7 @@
     cursor: pointer;
     padding: 13px 126px 15px 124px;
     margin: 179px 0 0;
+    width: 100%;
 }
 
 .login__question {

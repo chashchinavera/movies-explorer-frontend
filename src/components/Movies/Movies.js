@@ -5,16 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { initialCards } from '../../utils/constants';
 import Footer from '../Footer/Footer';
 
-function Movies() {
-
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    if (loggedIn) {
-      setCards(initialCards);
-    }
-  }, [loggedIn])
+function Movies({ loggedIn}) {
 
   return (
     <div className='movies'>

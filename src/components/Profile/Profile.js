@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import Header from './../Header/Header';
 
-function Profile() {
+function Profile({ loggedIn }) {
     const name = 'Виталий';
     const email = 'test@test.ru'
-
-    const [loggedIn, setLoggedIn] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
