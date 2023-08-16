@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -7,12 +8,36 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import api from '../../utils/Api.js';
+import * as Authorisation from './../Auth/Auth.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function App() {
 
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const [formRegisterValue, setFormRegisterValue] = useState({
+        email: "",
+        password: "",
+    });
+
+    const navigate = useNavigate();
+
+    function handleRegisterSubmit(evt) {
+        evt.preventDefault();
+        Authorisation.register(formRegisterValue.email, formRegisterValue.password)
+            .then(() => {
+                navigate('/signin');
+                setFormRegisterValue({ email: '', password: '' });
+                setIsSuccess(true);
+            })
+            .catch((err) => {
+                setIsSuccess(false);
+                console.log(err);
+            })
+    }
+
     return (
-        <CurrentUserContext.Provider value={currentUser}>
+        <CurrentUserContext.Provider>
             <div className="page">
                 <Routes>
                     <Route
@@ -37,7 +62,11 @@ function App() {
                     />
                     <Route
                         path='/signup'
-                        element={<Register />}
+                        element={<Register
+                            onRegister={handleRegisterSubmit}
+                            formRegisterValue={formRegisterValue}
+                            setFormRegisterValue={setFormRegisterValue}
+                        />}
                     />
                     <Route
                         path='*'

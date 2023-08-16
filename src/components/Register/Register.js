@@ -1,12 +1,13 @@
 import Header from '../Header/Header';
 
-function Register() {
-    const name = 'Виталий';
-    const email = 'test@test.ru'
+function Register({ formRegisterValue, setFormRegisterValue, onRegister }) {
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log('Вы зарегистрировались')
+    function handleEmailChange(evt) {
+        const { name, value } = evt.target;
+        setFormRegisterValue({
+            ...formRegisterValue,
+            [name]: value,
+        });
     }
 
     return (
@@ -16,13 +17,14 @@ function Register() {
                 <h2 className='register__title'>Добро пожаловать!</h2>
                 <form
                     className='register__form'
-                    onSubmit={handleSubmit}
+                    onSubmit={onRegister}
                     id='profile'>
                     <div className='register__column'>
                         <span className='register__text'>Имя</span>
                         <input
                             type='text'
-                            value={name}
+                            value={formRegisterValue.name}
+                            onChange={handleEmailChange}
                             id='input__name'
                             name='name'
                             className='register__input'
@@ -36,7 +38,8 @@ function Register() {
                         <span className='register__text'>E-mail</span>
                         <input
                             type='text'
-                            value={email}
+                            value={formRegisterValue.email}
+                            onChange={handleEmailChange}
                             id='input__email'
                             name='email'
                             className='register__input'
@@ -50,11 +53,12 @@ function Register() {
                         <span className='register__text'>Пароль</span>
                         <input
                             type='password'
-                            value={name}
+                            value={formRegisterValue.password}
+                            onChange={handleEmailChange}
                             id='input__password'
                             name='password'
                             className='register__input'
-                            placeholder='1234'
+                            placeholder='Пароль'
                             required
                             minLength='2'
                             maxLength='40'
@@ -66,8 +70,7 @@ function Register() {
                 <button
                     type='button'
                     aria-label='Зарегистрироваться'
-                    className='register__link'
-                    onClick={handleSubmit}>
+                    className='register__link'>
                     Зарегистрироваться
                 </button>
                 <div className='register__question'>
