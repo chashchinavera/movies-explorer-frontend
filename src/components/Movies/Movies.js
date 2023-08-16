@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 
 function Movies() {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [cards, setCards] = useState([]);
 
   useEffect(() => {

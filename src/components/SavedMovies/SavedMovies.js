@@ -7,7 +7,7 @@ import { savedCards } from '../../utils/constants';
 
 function SavedMovies() {
 
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     const [cards, setCards] = useState([]);
 
     useEffect(() => {

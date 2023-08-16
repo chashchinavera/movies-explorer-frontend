@@ -5,7 +5,7 @@ function Profile() {
     const name = 'Виталий';
     const email = 'test@test.ru'
 
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();

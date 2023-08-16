@@ -15,6 +15,7 @@ import ProctectedRoute from '../ProctectedRoute/ProctectedRoute.js'
 function App() {
 
     const [isSuccess, setIsSuccess] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
 
     const [formRegisterValue, setFormRegisterValue] = useState({
         email: "",
@@ -25,16 +26,17 @@ function App() {
 
     function handleRegisterSubmit(evt) {
         evt.preventDefault();
-        Authorisation.register(formRegisterValue.email, formRegisterValue.password)
+        Authorisation.register(formRegisterValue.name, formRegisterValue.email, formRegisterValue.password)
             .then(() => {
                 navigate('/signin');
-                setFormRegisterValue({ email: '', password: '' });
+                setFormRegisterValue({ name: '', email: '', password: '' });
                 setIsSuccess(true);
             })
             .catch((err) => {
                 setIsSuccess(false);
                 console.log(err);
             })
+            .finally(() => setErrorMessage(true));
     }
 
     return (
@@ -83,6 +85,8 @@ function App() {
                             onRegister={handleRegisterSubmit}
                             formRegisterValue={formRegisterValue}
                             setFormRegisterValue={setFormRegisterValue}
+                            isSuccess={isSuccess}
+                            errorMessage={errorMessage}
                         />}
                     />
                     <Route
