@@ -92,9 +92,10 @@ function App() {
 
     useEffect(() => {
         if (loggedIn) {
-            Promise.all([api.getUserData(jwt)])
-                .then(([currentUser]) => {
+            Promise.all([api.getUserData(jwt), api.getInitialCards(jwt)])
+                .then(([currentUser, movies]) => {
                     setCurrentUser(currentUser);
+                    setMovies(movies);
                 })
                 .catch(err => {
                     console.log(err);
@@ -118,9 +119,8 @@ function App() {
                         path='/movies'
                         element={
                             <ProctectedRoute
-                                element={<Movies
-                                    loggedIn={loggedIn}
-                                />}
+                                element={Movies}
+                                loggedIn={loggedIn}
                             />
                         }
                     />
@@ -128,9 +128,8 @@ function App() {
                         path='/saved-movies'
                         element={
                             <ProctectedRoute
-                                element={<SavedMovies
-                                    loggedIn={loggedIn}
-                                />}
+                                element={SavedMovies}
+                                loggedIn={loggedIn}
                             />
                         }
                     />
@@ -138,9 +137,8 @@ function App() {
                         path='/profile'
                         element={
                             <ProctectedRoute
-                                element={<Profile
-                                    loggedIn={loggedIn}
-                                />}
+                                element={Profile}
+                                loggedIn={loggedIn}
                             />
                         }
                     />
