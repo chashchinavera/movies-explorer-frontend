@@ -8,8 +8,9 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import api from '../../utils/Api.js';
-import * as Authorisation from './../Auth/Auth.js';
+import * as Authorisation from '../Auth/Auth.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
+import ProctectedRoute from '../ProctectedRoute/ProctectedRoute.js'
 
 function App() {
 
@@ -42,19 +43,35 @@ function App() {
                 <Routes>
                     <Route
                         path='/'
-                        element={<Main />}
+                        element={
+                            <ProctectedRoute
+                                element={<Main />}
+                            />
+                        }
                     />
                     <Route
                         path='/movies'
-                        element={<Movies />}
+                        element={
+                            <ProctectedRoute
+                                element={<Movies />}
+                            />
+                        }
                     />
                     <Route
                         path='/saved-movies'
-                        element={<SavedMovies />}
+                        element={
+                            <ProctectedRoute
+                                element={<SavedMovies />}
+                            />
+                        }
                     />
                     <Route
                         path='/profile'
-                        element={<Profile />}
+                        element={
+                            <ProctectedRoute
+                                element={<Profile />}
+                            />
+                        }
                     />
                     <Route
                         path='/signin'
