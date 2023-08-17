@@ -41,7 +41,7 @@ class Api {
     }
   
     // Отправка информации о пользователе на сервер
-    sendUserData(profileData, jwt) {
+    sendUserData(data, jwt) {
       return this._request(`${this._link}users/me`, {
         method: 'PATCH',
         headers: {
@@ -49,8 +49,8 @@ class Api {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: profileData.name,
-          about: profileData.about
+          name: data.name,
+          email: data.email
         })
       })
     }

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SavedMoviesList from '../SavedMoviesList/SavedMoviesList';

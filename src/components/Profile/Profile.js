@@ -1,45 +1,53 @@
-import { useState } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import Header from './../Header/Header';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ loggedIn }) {
-    const name = 'Виталий';
-    const email = 'test@test.ru'
+function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail}) {
 
-    function handleSubmit(e) {
-        e.preventDefault();
+    const currentUser = React.useContext(CurrentUserContext);
 
-        console.log('Данные изменены');
+    const [name, setName] = useState('');
+
+    useEffect(() => {
+        setName(currentUser.name);
+        setEmail(currentUser.email);
+    }, [currentUser]);
+
+        function handleNameEdit(evt) {
+        setName(evt.target.value);
     }
 
-    function handleNameEdit() {
-        console.log('Имя изменено');
+    function handleEmailEdit(evt) {
+        setEmail(evt.target.value);
     }
 
-    function handleEmailEdit() {
-        console.log('Email изменен');
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        onUpdateUser({
+            name,
+            email,
+        });
     }
 
-    function handleSignOut() {
-        console.log('Вы вышли из аккаунта');
-    }
     return (
         <section className='profile'>
             <Header
                 loggedIn={loggedIn}
                 theme={{ short: false }}
             />
-            <h2 className='profile__hello'>Привет, {name}!</h2>
+            <h2 className='profile__hello'>Привет, {currentUser.name}!</h2>
             <form
-                className='profile__form'
                 onSubmit={handleSubmit}
-                id='profile'>
+                className='profile__form'
+            >
                 <div className='profile__string'>
                     <span className='profile__text'>Имя</span>
                     <input
                         type='text'
-                        onChange={handleNameEdit}
                         value={name}
-                        id='input__name'
+                        onChange={handleNameEdit}
+                        id='input-name'
                         name='name'
                         className='profile__input'
                         placeholder='Имя'
@@ -52,31 +60,31 @@ function Profile({ loggedIn }) {
                 <div className='profile__string'>
                     <span className='profile__text'>E-mail</span>
                     <input
-                        onChange={handleEmailEdit}
+                        type='email'
                         value={email}
-                        id='input__email'
+                        onChange={handleEmailEdit}
+                        id='input-email'
                         name='email'
                         className='profile__input'
                         placeholder='E-mail'
                         required
                     />
                 </div>
-                <div className='profile__links'>
-                    <button
-                        type='submit'
-                        aria-label='Редактировать'
-                        className='profile__link'>
-                        Редактировать
-                    </button>
-                    <button
-                        type='button'
-                        aria-label='Выйти из аккаунта'
-                        className='profile__link profile__exit'
-                        onClick={handleSignOut}>
-                        Выйти из аккаунта
-                    </button>
-                </div>
+                <button
+                    type='submit'
+                    aria-label='Редактировать'
+                    className='profile__link'>
+                    Редактировать
+                </button>
             </form>
+            <button
+                type='button'
+                aria-label='Выйти из аккаунта'
+                className='profile__link profile__exit'
+                onClick={onSignOut}
+                >
+                Выйти из аккаунта
+            </button>
         </section>
     )
 }

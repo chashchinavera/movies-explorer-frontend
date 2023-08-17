@@ -43,7 +43,7 @@ function Login({ onLogin, formLoginValue, setFormLoginValue }) {
                             id='input-password'
                             name='password'
                             className='login__input'
-                            placeholder='1234'
+                            placeholder='Пароль'
                             required
                             minLength='2'
                             maxLength='40'

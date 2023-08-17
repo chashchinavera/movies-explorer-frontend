@@ -16,40 +16,27 @@ function App() {
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState('');
     const [currentUser, setCurrentUser] = useState({});
     const [movies, setMovies] = useState([]);
 
     const [formRegisterValue, setFormRegisterValue] = useState({
-        email: "",
-        password: "",
+        email: '',
+        password: '',
     });
 
     const [formLoginValue, setFormLoginValue] = useState({
-        email: "",
-        password: "",
+        email: '',
+        password: '',
     });
 
     const navigate = useNavigate();
-    const jwt = localStorage.getItem('userId');
+    const jwt = localStorage.getItem('jwt');
+    const loggedIn = localStorage.getItem('loggedIn');
 
-    function handleTokenCheck() {
-        if (jwt) {
-            Authorisation.checkToken(jwt)
-                .then((res) => {
-                    setLoggedIn(true);
-                    setEmail(res.email);
-                    navigate("/");
-                })
-                .catch((err) => console.log(err));
-        }
-    }
-
-    function handleSignOut() {
-        localStorage.clear('userId');
+    function signOut() {
+        localStorage.clear();
         navigate('/signin');
-        setLoggedIn(false);
         console.log(currentUser);
     }
 
@@ -73,10 +60,10 @@ function App() {
         Authorisation.login(formLoginValue.email, formLoginValue.password)
             .then((res) => {
                 if (res.jwt) {
-                    localStorage.setItem('userId', res.jwt);
+                    localStorage.setItem('jwt', res.jwt);
                     setFormLoginValue({ email: '', password: '' });
                     setEmail(formLoginValue.email);
-                    setLoggedIn(true);
+                    localStorage.setItem('loggedIn', true)
                     navigate('/');
                 }
             })
@@ -87,25 +74,40 @@ function App() {
     }
 
     useEffect(() => {
-        handleTokenCheck();
-    }, []);
-
-    useEffect(() => {
-        if (loggedIn) {
-            Promise.all([api.getUserData(jwt), api.getInitialCards(jwt)])
-                .then(([currentUser, movies]) => {
-                    setCurrentUser(currentUser);
-                    setMovies(movies);
+        if (jwt && loggedIn) {
+            Authorisation.checkToken(jwt)
+                .then(() => {
+                    Promise.all([api.getUserData(jwt), api.getInitialCards(jwt)])
+                        .then(([currentUser, movies]) => {
+                            setCurrentUser(currentUser);
+                            setMovies(movies);
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
                 })
-                .catch(err => {
-                    console.log(err);
-                });
+                .catch((err) => console.log(err));
         }
-    }, [loggedIn])
+    }, [loggedIn, jwt]);
+
+    function handleUpdateUser(data) {
+        // setIsLoading(true);
+        api.sendUserData(data, jwt)
+            .then((data) => {
+                const { name, email } = data;
+                setCurrentUser({ ...currentUser, name: name, email: email });
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                // setIsLoading(false);
+            });
+    }
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-            <div className="page">
+            <div className='page'>
                 <Routes>
                     <Route
                         path='/'
@@ -139,6 +141,10 @@ function App() {
                             <ProctectedRoute
                                 element={Profile}
                                 loggedIn={loggedIn}
+                                onSignOut={signOut}
+                                email={email}
+                                setEmail={setEmail}
+                                onUpdateUser={handleUpdateUser}
                             />
                         }
                     />
