@@ -57,7 +57,7 @@ function Register({ formRegisterValue, setFormRegisterValue, onRegister, isSucce
                             onChange={handleEmailChange}
                             id='input-password'
                             name='password'
-                            className='register__input'
+                            className={`register__input ${errorMessage && !isSuccess ? 'register__input_red' : ''}`}
                             placeholder='Пароль'
                             required
                             minLength='4'

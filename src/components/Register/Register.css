@@ -61,6 +61,10 @@
     border: none;
 }
 
+.register__input_red {
+    color: #EE3465;
+}
+
 .register__error {
     color: #EE3465;
     font-size: 10px;
