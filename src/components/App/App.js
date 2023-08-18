@@ -8,10 +8,10 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import mainApi from '../../utils/MainApi.js';
-import moviesApi from '../../utils/MoviesApi';
 import * as Authorisation from '../Auth/Auth.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import ProctectedRoute from '../ProctectedRoute/ProctectedRoute.js'
+import { MOVIE_DURATION_SHORT } from '../../config/config';
 
 function App() {
 
@@ -19,10 +19,7 @@ function App() {
     const [errorMessage, setErrorMessage] = useState(false);
     const [email, setEmail] = useState('');
     const [currentUser, setCurrentUser] = useState({});
-    const [movies, setMovies] = useState([]);
     const [savedMovies, setSavedMovies] = useState([]);
-    const [switchOnButton, setSwitchOnButton] = useState(false);
-    const [switchOnButtonSave, setSwitchOnButtonSave] = useState(false);
 
     const [formRegisterValue, setFormRegisterValue] = useState({
         email: '',
@@ -34,16 +31,12 @@ function App() {
         password: '',
     });
 
-    const [formSearchMovie, setFormSearchMovie] = useState({
-        request: '',
-    });
-
     const navigate = useNavigate();
     const jwt = localStorage.getItem('jwt');
     const loggedIn = localStorage.getItem('loggedIn');
 
     function signOut() {
-        localStorage.clear();
+        localStorage.clear('jwt', 'loggedIn');
         navigate('/signin');
         console.log(currentUser);
     }
@@ -85,12 +78,10 @@ function App() {
         if (jwt && loggedIn) {
             Authorisation.checkToken(jwt)
                 .then(() => {
-                    Promise.all([mainApi.getUserData(jwt), mainApi.getInitialCards(jwt), moviesApi.getMovies(jwt)])
-                        .then(([currentUser, savedMovies, movies]) => {
+                    Promise.all([mainApi.getUserData(jwt), mainApi.getInitialCards(jwt)])
+                        .then(([currentUser, savedMovies]) => {
                             setCurrentUser(currentUser);
                             setSavedMovies(savedMovies);
-                            setMovies(movies)
-                            console.log(movies);
                         })
                         .catch(err => {
                             console.log(err);
@@ -101,7 +92,6 @@ function App() {
     }, [loggedIn, jwt]);
 
     function handleUpdateUser(data) {
-        // setIsLoading(true);
         mainApi.sendUserData(data, jwt)
             .then((data) => {
                 const { name, email } = data;
@@ -110,12 +100,22 @@ function App() {
             .catch((err) => {
                 console.log(err);
             })
-            .finally(() => {
-                // setIsLoading(false);
-            });
     }
 
+    function filterMovies(movies, request) {
+        const moviesRequest = movies.filter((movie) => {
+            console.log(movies)
+            const movieRu = String(movie.nameRU).toLowerCase().trim();
+            const movieEn = String(movie.nameEN).toLowerCase().trim();
+            const requestMovies = request.toLowerCase().trim();
+            return movieRu.indexOf(requestMovies) !== -1 || movieEn.indexOf(requestMovies) !== -1;
+        });
+        return moviesRequest;
+    }
 
+    function filterDuration(movies) {
+        return movies.filter((movie) => movie.duration < MOVIE_DURATION_SHORT);
+    }
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -135,11 +135,8 @@ function App() {
                             <ProctectedRoute
                                 element={Movies}
                                 loggedIn={loggedIn}
-                                movies={movies}
-                                switchOnButton={switchOnButton}
-                                setSwitchOnButton={setSwitchOnButton}
-                                formSearchMovie={formSearchMovie}
-                                setFormSearchMovie={setFormSearchMovie}
+                                filterMovies={filterMovies}
+                                filterDuration={filterDuration}
                             />
                         }
                     />
@@ -149,11 +146,7 @@ function App() {
                             <ProctectedRoute
                                 element={SavedMovies}
                                 loggedIn={loggedIn}
-                                switchOnButtonSave={switchOnButtonSave}
-                                setSwitchOnButtonSave={setSwitchOnButtonSave}
                                 savedMovies={savedMovies}
-                                formSearchMovie={formSearchMovie}
-                                setFormSearchMovie={setFormSearchMovie}
                             />
                         }
                     />

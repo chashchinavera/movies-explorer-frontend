@@ -19,11 +19,10 @@ class MoviesApi {
   }
 
   //Получение фильмов с сервера
-  getMovies(jwt) {
+  getMovies() {
     return this._request(`${this._link}`, {
       method: "GET",
       headers: {
-        'Authorization': `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
     })

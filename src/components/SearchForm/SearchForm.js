@@ -1,20 +1,23 @@
-function SearchForm({ switchOnButton, setSwitchOnButton, formSearchMovie, setFormSearchMovie }) {
+import { useState } from 'react';
 
-    function handleSearchChange(evt) {
-        const { name, value } = evt.target;
-        setFormSearchMovie({
-            ...formSearchMovie,
-            [name]: value,
-        });
-    }
+function SearchForm({ switchOnButton, setSwitchOnButton, onSubmit }) {
+
+    const [request, setRequest] = useState('');
 
     function handleToggleSwitch() {
         setSwitchOnButton(!switchOnButton);
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log('Поиск фильма')
+    function handleRequestEdit(evt) {
+        setRequest(evt.target.value);
+    }
+
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        if (request.trim().length === 0) {
+        } else {
+            onSubmit(request);
+        }
     }
 
     return (
@@ -26,8 +29,8 @@ function SearchForm({ switchOnButton, setSwitchOnButton, formSearchMovie, setFor
                 <input
                     className='search__input'
                     type='text'
-                    value={formSearchMovie.request}
-                    onChange={handleSearchChange}
+                    value={request || ''}
+                    onChange={handleRequestEdit}
                     placeholder='Фильм'
                     required />
                 <button className='search__submit' type='submit' aria-label='Поиск фильмов' />

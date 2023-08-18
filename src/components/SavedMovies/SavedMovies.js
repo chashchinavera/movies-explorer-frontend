@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SavedMoviesList from '../SavedMoviesList/SavedMoviesList';
 import SearchForm from "../SearchForm/SearchForm";
 
-function SavedMovies({ loggedIn, switchOnButtonSave, setSwitchOnButtonSave, savedMovies, formSearchMovie, setFormSearchMovie }) {
+function SavedMovies({ loggedIn, savedMovies, formSearchMovie, setFormSearchMovie }) {
+
+    const [switchOnButtonSave, setSwitchOnButtonSave] = useState(false);
 
     return (
         <div className='movies'>

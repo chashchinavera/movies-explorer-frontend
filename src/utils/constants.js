@@ -4,4 +4,3 @@ export function movieDuration({ duration }) {
     return hours + 'ч ' + minutes + 'м';
 };
 
-export const BASE_URL = 'https://api.nomoreparties.co';

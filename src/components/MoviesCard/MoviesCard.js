@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { movieDuration } from "../../utils/constants";
-import { BASE_URL } from '../../utils/constants';
+import { BASE_URL } from '../../config/config';
 
 function MoviesCard({ name, image, duration, cardButton }) {
 
