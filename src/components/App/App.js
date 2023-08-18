@@ -104,7 +104,6 @@ function App() {
 
     function filterMovies(movies, request) {
         const moviesRequest = movies.filter((movie) => {
-            console.log(movies)
             const movieRu = String(movie.nameRU).toLowerCase().trim();
             const movieEn = String(movie.nameEN).toLowerCase().trim();
             const requestMovies = request.toLowerCase().trim();

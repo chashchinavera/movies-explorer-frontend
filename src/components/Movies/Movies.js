@@ -9,20 +9,26 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
 
   const [switchOnButton, setSwitchOnButton] = useState(false);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filteredDurationMovies, setFilteredDurationMovies] = useState([]);
 
-  function getFilteredMovies(movies, request) {
+  //Получение отфильтрованного массива фильмов
+  function getFilteredMovies(movies, request, switchOnButton) {
     const moviesFilteredList = filterMovies(movies, request);
 
     setFilteredMovies(moviesFilteredList);
+    setFilteredDurationMovies(switchOnButton ? filterDuration(moviesFilteredList) : moviesFilteredList);
 
     localStorage.setItem('allMovies', JSON.stringify(movies));
     localStorage.setItem('movies', JSON.stringify(moviesFilteredList));
   }
 
+  //Получение отфильтрованного массива фильмов
   function handleMoviesSearch(request) {
+    localStorage.setItem('request', request);
+    localStorage.setItem('switchOnButton', switchOnButton);
     if (localStorage.getItem('allMovies')) {
       const movies = JSON.parse(localStorage.getItem('allMovies'));
-      getFilteredMovies(movies, request);
+      getFilteredMovies(movies, request, switchOnButton);
     } else {
       moviesApi.getMovies()
         .then((movies) => {
@@ -34,13 +40,30 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
     }
   }
 
+  //Получение отфильтрованного массива короткометражек
+  function handleSwitchButton() {
+    setSwitchOnButton(!switchOnButton);
+    if (!switchOnButton) {
+      setFilteredDurationMovies(filterDuration(filteredMovies));
+    }
+    localStorage.setItem('switchOnButton', !switchOnButton);
+  }
+
+  //Получение отфильтрованного массива фильмов после перезагрузки страницы
   useEffect(() => {
     if (localStorage.getItem('movies')) {
       const movies = JSON.parse(localStorage.getItem('movies'));
       setFilteredMovies(movies);
+      if (localStorage.getItem('switchOnButton') === 'true') {
+        setSwitchOnButton(true);
+        setFilteredDurationMovies(filterDuration(movies));
+      } else {
+        setSwitchOnButton(false);
+        setFilteredDurationMovies(movies);
+      }
     }
   }, []);
-
+  
   return (
     <div className='movies'>
       <Header
@@ -52,9 +75,10 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
           switchOnButton={switchOnButton}
           setSwitchOnButton={setSwitchOnButton}
           onSubmit={handleMoviesSearch}
+          onChange={handleSwitchButton}
         />
         <MoviesCardList
-          movies={filteredMovies}
+          movies={filteredDurationMovies}
         />
       </main>
       <Footer />
