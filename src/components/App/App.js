@@ -7,7 +7,8 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
-import api from '../../utils/Api.js';
+import mainApi from '../../utils/MainApi.js';
+import moviesApi from '../../utils/MoviesApi';
 import * as Authorisation from '../Auth/Auth.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import ProctectedRoute from '../ProctectedRoute/ProctectedRoute.js'
@@ -19,6 +20,9 @@ function App() {
     const [email, setEmail] = useState('');
     const [currentUser, setCurrentUser] = useState({});
     const [movies, setMovies] = useState([]);
+    const [savedMovies, setSavedMovies] = useState([]);
+    const [switchOnButton, setSwitchOnButton] = useState(false);
+    const [switchOnButtonSave, setSwitchOnButtonSave] = useState(false);
 
     const [formRegisterValue, setFormRegisterValue] = useState({
         email: '',
@@ -28,6 +32,10 @@ function App() {
     const [formLoginValue, setFormLoginValue] = useState({
         email: '',
         password: '',
+    });
+
+    const [formSearchMovie, setFormSearchMovie] = useState({
+        request: '',
     });
 
     const navigate = useNavigate();
@@ -77,10 +85,12 @@ function App() {
         if (jwt && loggedIn) {
             Authorisation.checkToken(jwt)
                 .then(() => {
-                    Promise.all([api.getUserData(jwt), api.getInitialCards(jwt)])
-                        .then(([currentUser, movies]) => {
+                    Promise.all([mainApi.getUserData(jwt), mainApi.getInitialCards(jwt), moviesApi.getMovies(jwt)])
+                        .then(([currentUser, savedMovies, movies]) => {
                             setCurrentUser(currentUser);
-                            setMovies(movies);
+                            setSavedMovies(savedMovies);
+                            setMovies(movies)
+                            console.log(movies);
                         })
                         .catch(err => {
                             console.log(err);
@@ -92,7 +102,7 @@ function App() {
 
     function handleUpdateUser(data) {
         // setIsLoading(true);
-        api.sendUserData(data, jwt)
+        mainApi.sendUserData(data, jwt)
             .then((data) => {
                 const { name, email } = data;
                 setCurrentUser({ ...currentUser, name: name, email: email });
@@ -104,6 +114,8 @@ function App() {
                 // setIsLoading(false);
             });
     }
+
+
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -123,6 +135,11 @@ function App() {
                             <ProctectedRoute
                                 element={Movies}
                                 loggedIn={loggedIn}
+                                movies={movies}
+                                switchOnButton={switchOnButton}
+                                setSwitchOnButton={setSwitchOnButton}
+                                formSearchMovie={formSearchMovie}
+                                setFormSearchMovie={setFormSearchMovie}
                             />
                         }
                     />
@@ -132,6 +149,11 @@ function App() {
                             <ProctectedRoute
                                 element={SavedMovies}
                                 loggedIn={loggedIn}
+                                switchOnButtonSave={switchOnButtonSave}
+                                setSwitchOnButtonSave={setSwitchOnButtonSave}
+                                savedMovies={savedMovies}
+                                formSearchMovie={formSearchMovie}
+                                setFormSearchMovie={setFormSearchMovie}
                             />
                         }
                     />

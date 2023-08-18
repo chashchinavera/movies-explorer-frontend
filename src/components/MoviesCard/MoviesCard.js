@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { movieDuration } from "../../utils/constants";
+import { BASE_URL } from '../../utils/constants';
 
 function MoviesCard({ name, image, duration, cardButton }) {
 
@@ -11,7 +12,7 @@ function MoviesCard({ name, image, duration, cardButton }) {
 
     return (
         <div className='movie'>
-            <img className='movie__image' alt={name} src={image} />
+            <img className='movie__image' alt={name} src={`${BASE_URL}/${image}`} />
             <button
                 className={`movie__button ${cardButton.state ? 'movie__delete' : ''} ${!cardButton.state && saveButton ? 'movie__button_active' : ''}`}
                 type='button'

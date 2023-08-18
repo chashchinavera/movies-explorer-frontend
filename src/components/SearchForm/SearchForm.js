@@ -1,8 +1,12 @@
-import { useState } from 'react';
+function SearchForm({ switchOnButton, setSwitchOnButton, formSearchMovie, setFormSearchMovie }) {
 
-function SearchForm() {
-
-    const [switchOnButton, setSwitchOnButton] = useState(false);
+    function handleSearchChange(evt) {
+        const { name, value } = evt.target;
+        setFormSearchMovie({
+            ...formSearchMovie,
+            [name]: value,
+        });
+    }
 
     function handleToggleSwitch() {
         setSwitchOnButton(!switchOnButton);
@@ -22,6 +26,8 @@ function SearchForm() {
                 <input
                     className='search__input'
                     type='text'
+                    value={formSearchMovie.request}
+                    onChange={handleSearchChange}
                     placeholder='Фильм'
                     required />
                 <button className='search__submit' type='submit' aria-label='Поиск фильмов' />

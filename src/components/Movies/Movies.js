@@ -1,10 +1,9 @@
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { initialCards } from '../../utils/constants';
 import Footer from '../Footer/Footer';
 
-function Movies({ loggedIn}) {
+function Movies({ loggedIn, movies, switchOnButton, setSwitchOnButton, formSearchMovie, setFormSearchMovie }) {
 
   return (
     <div className='movies'>
@@ -13,9 +12,14 @@ function Movies({ loggedIn}) {
         loggedIn={loggedIn}
       />
       <main>
-        <SearchForm />
+        <SearchForm
+          switchOnButton={switchOnButton}
+          setSwitchOnButton={setSwitchOnButton}
+          formSearchMovie={formSearchMovie}
+          setFormSearchMovie={setFormSearchMovie}
+        />
         <MoviesCardList
-          cards={initialCards}
+          movies={movies}
         />
       </main>
       <Footer />

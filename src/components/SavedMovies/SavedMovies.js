@@ -2,9 +2,8 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SavedMoviesList from '../SavedMoviesList/SavedMoviesList';
 import SearchForm from "../SearchForm/SearchForm";
-import { savedCards } from '../../utils/constants';
 
-function SavedMovies({ loggedIn }) {
+function SavedMovies({ loggedIn, switchOnButtonSave, setSwitchOnButtonSave, savedMovies, formSearchMovie, setFormSearchMovie }) {
 
     return (
         <div className='movies'>
@@ -13,9 +12,14 @@ function SavedMovies({ loggedIn }) {
                 theme={{ short: false }}
             />
             <main>
-                <SearchForm />
+                <SearchForm
+                    switchOnButtonSave={switchOnButtonSave}
+                    setSwitchOnButtonSave={setSwitchOnButtonSave}
+                    formSearchMovie={formSearchMovie}
+                    setFormSearchMovie={setFormSearchMovie}
+                />
                 <SavedMoviesList
-                    cards={savedCards}
+                    cards={savedMovies}
                 />
             </main>
             <Footer />

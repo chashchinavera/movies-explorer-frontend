@@ -1,23 +1,23 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ cards, cardButton }) {
+function MoviesCardList({ movies }) {
 
     return (
         <section className='movies__list'>
             <div className='movies__cards'>
-                {cards.map((card) => (
+                {movies.map((movie) => (
                     <MoviesCard
-                        card={card}
-                        key={card.movieiId}
-                        name={card.nameRU}
-                        duration={card.duration}
-                        image={card.image}
-                        movieId={card.movieId}
-                        cardButton={{state:false}}
+                        movie={movie}
+                        key={movie.movieiId}
+                        name={movie.nameRU}
+                        duration={movie.duration}
+                        image={movie.image.url}
+                        movieId={movie.movieId}
+                        cardButton={{ state: false }}
                     />
                 ))}
             </div>
-            {cards.length > 4 &&
+            {movies.length > 4 &&
                 <button className='movies__more' type='button' aria-label='Ещё'>
                     Ещё
                 </button>}
