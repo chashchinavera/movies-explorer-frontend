@@ -1,11 +1,49 @@
+import { useState, useEffect } from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
+import {
+    TABLET_WIDTH,
+    MOBILE_WIDTH,
+    CARDS_AMOUNT_DESKTOP,
+    CARDS_AMOUNT_TABLET,
+    CARDS_AMOUNT_MOBILE,
+    CARDS_LOAD_DESKTOP,
+    CARDS_LOAD_MOBILE,
+} from "../../config/config";
 
 function MoviesCardList({ movies }) {
+
+    const [moviesAmount, setMoviesAmount] = useState(0);
+
+    function handleMoviesLines() {
+        const width = window.innerWidth;
+        if (width > TABLET_WIDTH) {
+            setMoviesAmount(CARDS_AMOUNT_DESKTOP);
+        } else if (width > MOBILE_WIDTH && width <= TABLET_WIDTH) {
+            setMoviesAmount(CARDS_AMOUNT_TABLET);
+        } else if (width <= MOBILE_WIDTH) {
+            setMoviesAmount(CARDS_AMOUNT_MOBILE);
+        }
+    }
+
+    useEffect(() => {
+        handleMoviesLines();
+    }, []);
+
+    function loadMovies() {
+        const width = window.innerWidth;
+        if (width > TABLET_WIDTH) {
+            setMoviesAmount(moviesAmount + CARDS_LOAD_DESKTOP);
+        } else if (width > MOBILE_WIDTH && width <= TABLET_WIDTH) {
+            setMoviesAmount(moviesAmount + CARDS_LOAD_MOBILE);
+        } else if (width <= MOBILE_WIDTH) {
+            setMoviesAmount(moviesAmount + CARDS_LOAD_MOBILE);
+        }
+    }
 
     return (
         <section className='movies__list'>
             <div className='movies__cards'>
-                {movies.map((movie) => (
+                {movies.slice(0, moviesAmount).map((movie) => (
                     <MoviesCard
                         movie={movie}
                         key={movie.movieiId}
@@ -18,8 +56,8 @@ function MoviesCardList({ movies }) {
                     />
                 ))}
             </div>
-            {movies.length > 4 &&
-                <button className='movies__more' type='button' aria-label='Ещё'>
+            {movies.length > moviesAmount &&
+                <button className='movies__more' type='button' aria-label='Ещё' onClick={loadMovies}>
                     Ещё
                 </button>}
         </section>

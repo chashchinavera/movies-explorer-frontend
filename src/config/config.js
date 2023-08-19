@@ -1,3 +1,22 @@
-export const BASE_URL = 'https://api.nomoreparties.co';
+const BASE_URL = 'https://api.nomoreparties.co';
 
-export const MOVIE_DURATION_SHORT = 40;
+const MOVIE_DURATION_SHORT = 40;
+const TABLET_WIDTH = 1000;
+const MOBILE_WIDTH = 550;
+const CARDS_AMOUNT_DESKTOP = 12;
+const CARDS_AMOUNT_TABLET = 8;
+const CARDS_AMOUNT_MOBILE = 5;
+const CARDS_LOAD_DESKTOP = 3;
+const CARDS_LOAD_MOBILE = 2;
+
+export {
+    BASE_URL,
+    MOVIE_DURATION_SHORT,
+    TABLET_WIDTH,
+    MOBILE_WIDTH,
+    CARDS_AMOUNT_DESKTOP,
+    CARDS_AMOUNT_TABLET,
+    CARDS_AMOUNT_MOBILE,
+    CARDS_LOAD_DESKTOP,
+    CARDS_LOAD_MOBILE,
+}
