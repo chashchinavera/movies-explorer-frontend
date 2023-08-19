@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Header from '../Header/Header';
 
 function Register({ formRegisterValue, setFormRegisterValue, onRegister, isSuccess, errorMessage }) {

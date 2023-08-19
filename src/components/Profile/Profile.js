@@ -3,24 +3,38 @@ import { useState, useEffect } from 'react';
 import Header from './../Header/Header';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail}) {
+function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
 
     const currentUser = React.useContext(CurrentUserContext);
 
     const [name, setName] = useState('');
+    const [isDisabled, setIsDisabled] = useState(true);
 
     useEffect(() => {
         setName(currentUser.name);
         setEmail(currentUser.email);
     }, [currentUser]);
 
-        function handleNameEdit(evt) {
+    function handleNameEdit(evt) {
         setName(evt.target.value);
     }
 
     function handleEmailEdit(evt) {
         setEmail(evt.target.value);
     }
+
+    function inputDisabled() {
+        if ((name === currentUser.name) || (email === currentUser.email)) {
+            setIsDisabled(false);
+            console.log(isDisabled);
+        } else {
+            setIsDisabled(true);
+        }
+    }
+
+    useEffect(() => {
+        inputDisabled();
+    }, []);
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -73,16 +87,18 @@ function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail}) {
                 <button
                     type='submit'
                     aria-label='Редактировать'
-                    className='profile__link'>
+                    className={`profile__link ${isDisabled} ? 'profile__link_active' : ''`}
+                    disabled={isDisabled}
+                >
                     Редактировать
                 </button>
             </form>
             <button
                 type='button'
                 aria-label='Выйти из аккаунта'
-                className='profile__link profile__exit'
+                className='profile__link profile__link_active profile__exit'
                 onClick={onSignOut}
-                >
+            >
                 Выйти из аккаунта
             </button>
         </section>

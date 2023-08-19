@@ -61,6 +61,7 @@
 .profile__link {
     background-color: transparent;
     border: none;
+    display: block;
     color: #FFF;
     font-size: 13px;
     font-style: normal;
@@ -68,8 +69,11 @@
     line-height: normal;
     margin: 203px auto 0;
     padding: 0;
-    cursor: pointer;
     width: fit-content;
+}
+
+.profile__link_active {
+    cursor: pointer;
 }
 
 .profile__exit {
