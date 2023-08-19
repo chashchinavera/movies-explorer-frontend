@@ -36,7 +36,7 @@ function App() {
     const loggedIn = localStorage.getItem('loggedIn');
 
     function signOut() {
-        localStorage.clear('jwt', 'loggedIn');
+        localStorage.clear('jwt', 'loggedIn', 'allMovies', 'movies', 'switchOnButton', 'request');
         navigate('/signin');
         console.log(currentUser);
     }

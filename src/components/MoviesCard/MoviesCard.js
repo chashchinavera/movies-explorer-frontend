@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { movieDuration } from "../../utils/constants";
+import { movieDuration } from '../../utils/constants';
 import { BASE_URL } from '../../config/config';
 
-function MoviesCard({ name, image, duration, cardButton }) {
+function MoviesCard({ name, image, duration, cardButton, trailerLink }) {
 
     const [saveButton, setSaveButton] = useState(false);
 
@@ -22,7 +22,7 @@ function MoviesCard({ name, image, duration, cardButton }) {
                 {!cardButton.state && !saveButton ? 'Сохранить' : ''}
             </button>
             <div className='movie__info'>
-                <p className='movie__title'>{name}</p>
+                <a className='movie__title' href={trailerLink} target='_blank' rel='noreferrer'>{name}</a>
                 <p className='movie__duration'>{movieDuration({ duration })}</p>
             </div>
         </div>

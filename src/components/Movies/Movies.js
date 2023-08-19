@@ -12,7 +12,7 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
   const [filteredDurationMovies, setFilteredDurationMovies] = useState([]);
 
   //Получение отфильтрованного массива фильмов
-  function getFilteredMovies(movies, request, switchOnButton) {
+  function handleMovies(movies, request, switchOnButton) {
     const moviesFilteredList = filterMovies(movies, request);
 
     setFilteredMovies(moviesFilteredList);
@@ -28,11 +28,11 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
     localStorage.setItem('switchOnButton', switchOnButton);
     if (localStorage.getItem('allMovies')) {
       const movies = JSON.parse(localStorage.getItem('allMovies'));
-      getFilteredMovies(movies, request, switchOnButton);
+      handleMovies(movies, request, switchOnButton);
     } else {
       moviesApi.getMovies()
         .then((movies) => {
-          getFilteredMovies(movies, request, switchOnButton);
+          handleMovies(movies, request, switchOnButton);
         })
         .catch((err) => {
           console.log(err);

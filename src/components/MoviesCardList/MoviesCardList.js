@@ -13,6 +13,7 @@ function MoviesCardList({ movies }) {
                         duration={movie.duration}
                         image={movie.image.url}
                         movieId={movie.movieId}
+                        trailerLink={movie.trailerLink}
                         cardButton={{ state: false }}
                     />
                 ))}
