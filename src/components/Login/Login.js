@@ -1,14 +1,12 @@
 import Header from '../Header/Header';
+import useFormValidation from '../../hooks/useFormValidation';
 
-function Login({ onLogin, formLoginValue, setFormLoginValue }) {
+function Login({ onLogin, formLoginValue }) {
 
-    function handleEmailChange(evt) {
-        const { name, value } = evt.target;
-        setFormLoginValue({
-            ...formLoginValue,
-            [name]: value,
-        });
-    }
+    const { values, errors, isValid, handleChange, } = useFormValidation();
+
+    formLoginValue.email = values.email;
+    formLoginValue.password = values.password;
 
     return (
         <section className='login'>
@@ -23,33 +21,39 @@ function Login({ onLogin, formLoginValue, setFormLoginValue }) {
                         <span className='login__text'>E-mail</span>
                         <input
                             type='email'
-                            value={formLoginValue.email || ""}
-                            onChange={handleEmailChange}
+                            value={values.email}
+                            onChange={handleChange}
                             id='input-email'
                             name='email'
-                            className='login__input'
+                            className={`login__input ${errors.email ? 'login__input_red' : ''}`}
                             placeholder='E-mail'
                             required
-                            minLength='2'
-                            maxLength='40'
+                            minLength='4'
+                            maxLength='30'
+                            pattern='^\S+@\S+\.\S+$'
                         />
+                        <span className='login__error'>{errors.email}</span>
                     </div>
                     <div className='login__column'>
                         <span className='login__text'>Пароль</span>
                         <input
                             type='password'
-                            value={formLoginValue.password || ""}
-                            onChange={handleEmailChange}
+                            value={values.password}
+                            onChange={handleChange}
                             id='input-password'
                             name='password'
-                            className='login__input'
+                            className={`login__input ${errors.password ? 'login__input_red' : ''}`}
                             placeholder='Пароль'
                             required
-                            minLength='2'
+                            minLength='4'
                             maxLength='40'
                         />
+                        <span className='login__error'>{errors.password}</span>
                     </div>
-                    <button className='login__link'>
+                    <button
+                        className={`login__link ${!isValid ? 'login__link_disabled' : ''}`}
+                        disabled={!isValid}
+                    >
                         Войти
                     </button>
                 </form>

@@ -1,4 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -15,12 +16,9 @@ import { MOVIE_DURATION_SHORT } from '../../config/config';
 
 function App() {
 
-    const [isSuccess, setIsSuccess] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(false);
     const [email, setEmail] = useState('');
     const [currentUser, setCurrentUser] = useState({});
     const [savedMovies, setSavedMovies] = useState([]);
-
 
     const [formRegisterValue, setFormRegisterValue] = useState({
         email: '',
@@ -48,13 +46,11 @@ function App() {
             .then(() => {
                 navigate('/signin');
                 setFormRegisterValue({ name: '', email: '', password: '' });
-                setIsSuccess(true);
             })
             .catch((err) => {
-                setIsSuccess(false);
                 console.log(err);
             })
-            .finally(() => setErrorMessage(true));
+
     }
 
     function handleLoginSubmit(evt) {
@@ -70,7 +66,6 @@ function App() {
                 }
             })
             .catch((err) => {
-                setIsSuccess(false);
                 console.log(err);
             });
     }
@@ -88,7 +83,9 @@ function App() {
                             console.log(err);
                         });
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     }, [loggedIn, jwt]);
 
@@ -179,30 +176,29 @@ function App() {
                                 element={Profile}
                                 loggedIn={loggedIn}
                                 onSignOut={signOut}
-                                email={email}
-                                setEmail={setEmail}
                                 onUpdateUser={handleUpdateUser}
-                                errorMessage={errorMessage}
                             />
                         }
                     />
                     <Route
                         path='/signin'
-                        element={<Login
-                            onLogin={handleLoginSubmit}
-                            formLoginValue={formLoginValue}
-                            setFormLoginValue={setFormLoginValue}
-                        />}
+                        element={!loggedIn ?
+                            <Login
+                                onLogin={handleLoginSubmit}
+                                formLoginValue={formLoginValue}
+                            />
+                            :
+                            <Navigate to='/' />}
                     />
                     <Route
                         path='/signup'
-                        element={<Register
-                            onRegister={handleRegisterSubmit}
-                            formRegisterValue={formRegisterValue}
-                            setFormRegisterValue={setFormRegisterValue}
-                            isSuccess={isSuccess}
-                            errorMessage={errorMessage}
-                        />}
+                        element={!loggedIn ?
+                            <Register
+                                onRegister={handleRegisterSubmit}
+                                formRegisterValue={formRegisterValue}
+                            />
+                            :
+                            <Navigate to='/' />}
                     />
                     <Route
                         path='*'

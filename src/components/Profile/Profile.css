@@ -19,7 +19,8 @@
     display: flex;
     flex-direction: column;
     margin: 123px auto 0;
-    gap: 17px;
+    gap: 5px 0px;
+    max-width: 410px;
 }
 
 .profile__string {
@@ -28,6 +29,11 @@
     justify-content: space-between;
     height: 14px;
     width: 410px;
+    padding: 0 0 15px;
+}
+
+.profile__string:nth-child(1) {
+    border-bottom: #424242 1px solid;
 }
 
 .profile__text {
@@ -53,9 +59,24 @@
     margin: 0;
 }
 
-.profile__line {
-    border-bottom: #424242 1px solid;
-    width: 410px;
+.profile__input_red {
+    color: #EE3465;
+}
+
+.profile__error {
+    color: #EE3465;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0 0 0px;
+    padding: 0;
+    visibility: hidden;
+    height: 10px;
+}
+
+.profile__error_active {
+    visibility: visible;
 }
 
 .profile__link {
@@ -70,14 +91,12 @@
     margin: 203px auto 0;
     padding: 0;
     width: fit-content;
-    pointer-events: none;
     cursor: pointer;
-    pointer-events: auto;
 }
 
 .profile__link_disabled {
-cursor: none;
-pointer-events: none;
+    cursor: auto;
+    color: #424242;
 }
 
 .profile__exit {
@@ -93,6 +112,7 @@ pointer-events: none;
 
     .profile__form {
         margin: 96px auto 0;
+        gap: 3px 0px;
     }
 
     .profile__link {
@@ -111,6 +131,7 @@ pointer-events: none;
 
     .profile__form {
         margin: 80px auto 0;
+        max-width: 260px;
     }
 
     .profile__string {

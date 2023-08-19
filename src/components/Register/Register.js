@@ -1,14 +1,13 @@
 import Header from '../Header/Header';
+import useFormValidation from '../../hooks/useFormValidation';
 
-function Register({ formRegisterValue, setFormRegisterValue, onRegister, isSuccess, errorMessage }) {
+function Register({ onRegister, formRegisterValue }) {
 
-    function handleEmailChange(evt) {
-        const { name, value } = evt.target;
-        setFormRegisterValue({
-            ...formRegisterValue,
-            [name]: value,
-        });
-    }
+    const { values, errors, isValid, handleChange, } = useFormValidation();
+
+    formRegisterValue.name = values.name;
+    formRegisterValue.email = values.email;
+    formRegisterValue.password = values.password;
 
     return (
         <section className='register'>
@@ -23,57 +22,58 @@ function Register({ formRegisterValue, setFormRegisterValue, onRegister, isSucce
                         <span className='register__text'>Имя</span>
                         <input
                             type='text'
-                            value={formRegisterValue.name}
-                            onChange={handleEmailChange}
+                            value={values.name || ''}
+                            onChange={handleChange}
                             id='input-name'
                             name='name'
-                            className='register__input'
+                            className={`register__input ${errors.name ? 'register__input_red' : ''}`}
                             placeholder='Имя'
                             required
                             minLength='2'
-                            maxLength='40'
+                            maxLength='30'
+                            pattern='^[А-ЯЁа-яёA-Za-z -]+$'
                         />
+                        <span className='register__error'>{errors.name}</span>
                     </div>
                     <div className='register__column'>
                         <span className='register__text'>E-mail</span>
                         <input
                             type='email'
-                            value={formRegisterValue.email}
-                            onChange={handleEmailChange}
+                            value={values.email || ''}
+                            onChange={handleChange}
                             id='input-email'
                             name='email'
-                            className={`register__input ${errorMessage ? 'register__input_red' : ''}`}
+                            className={`register__input ${errors.email ? 'register__input_red' : ''}`}
                             placeholder='E-mail'
                             required
-                            minLength='2'
-                            maxLength='40'
-                            pattern="^[А-ЯЁа-яёA-Za-z -]+$"
+                            minLength='4'
+                            maxLength='30'
+                            pattern='^\S+@\S+\.\S+$'
                         />
-                        <p className='register__error'>
-                            {errorMessage &&
-                                "Это поле должно содержать только латиницу, кириллицу, пробел или дефис."}
-                        </p>
+                        <span className='register__error'>{errors.email}</span>
                     </div>
                     <div className='register__column'>
                         <span className='register__text'>Пароль</span>
                         <input
                             type='password'
-                            value={formRegisterValue.password}
-                            onChange={handleEmailChange}
+                            value={values.password || ''}
+                            onChange={handleChange}
                             id='input-password'
                             name='password'
-                            className={`register__input ${errorMessage && !isSuccess ? 'register__input_red' : ''}`}
+                            className={`register__input ${errors.password ? 'register__input_red' : ''}`}
                             placeholder='Пароль'
                             required
                             minLength='4'
-                            maxLength='40'
+                            maxLength='30'
                         />
-                        <p className='register__error'>{errorMessage && !isSuccess ? 'Что-то пошло не так...' : ''}</p>
+                        <span className='register__error'>{errors.password}</span>
                     </div>
                     <button
                         type='submit'
                         aria-label='Зарегистрироваться'
-                        className='register__link'>
+                        className={`register__link ${!isValid ? 'register__link_disabled' : ''}`}
+                        disabled={!isValid}
+                    >
                         Зарегистрироваться
                     </button>
                 </form>

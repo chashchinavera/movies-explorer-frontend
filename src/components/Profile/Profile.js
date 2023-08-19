@@ -1,31 +1,23 @@
 import React from 'react';
+import useFormValidation from '../../hooks/useFormValidation';
 import { useState, useEffect } from 'react';
 import Header from './../Header/Header';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
+function Profile({ loggedIn, onSignOut, onUpdateUser }) {
+
+    const { values, setValues, errors, handleChange } = useFormValidation();
 
     const currentUser = React.useContext(CurrentUserContext);
 
-    const [name, setName] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
 
     useEffect(() => {
-        setName(currentUser.name);
-        setEmail(currentUser.email);
+        setValues({ name: currentUser.name, email: currentUser.email });
     }, [currentUser]);
 
-    function handleNameEdit(evt) {
-        setName(evt.target.value);
-        console.log(isDisabled)
-    }
-
-    function handleEmailEdit(evt) {
-        setEmail(evt.target.value);
-    }
-
     function inputDisabled() {
-        if ((name !== currentUser.name) || (email !== currentUser.email)) {
+        if ((values.name !== currentUser.name) || (values.email !== currentUser.email)) {
             setIsDisabled(false);
         } else {
             setIsDisabled(true);
@@ -34,14 +26,13 @@ function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
 
     useEffect(() => {
         inputDisabled();
-        console.log(isDisabled, '1')
-    }, [name, email, currentUser.name, currentUser.email]);
+    }, [values.name, values.email, currentUser.name, currentUser.email]);
 
     function handleSubmit(evt) {
         evt.preventDefault();
         onUpdateUser({
-            name,
-            email,
+            name: values['name'],
+            email: values['email'],
         });
     }
 
@@ -60,35 +51,44 @@ function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
                     <span className='profile__text'>Имя</span>
                     <input
                         type='text'
-                        value={name}
-                        onChange={handleNameEdit}
+                        value={values.name || ''}
+                        onChange={handleChange}
                         id='input-name'
                         name='name'
-                        className='profile__input'
+                        className={`profile__input ${errors.name ? 'profile__input_red' : ''}`}
                         placeholder='Имя'
                         required
                         minLength='2'
-                        maxLength='40'
+                        maxLength='30'
+                        pattern='^[А-ЯЁа-яёA-Za-z -]+$'
                     />
                 </div>
-                <span className='profile__line' />
+                <span className={`profile__error ${errors.name ? 'profile__error_active' : ''}`}>
+                    {errors.name &&
+                        'Это поле должно содержать только латиницу, кириллицу, пробел или дефис.'}
+                </span>
                 <div className='profile__string'>
                     <span className='profile__text'>E-mail</span>
                     <input
                         type='email'
-                        value={email}
-                        onChange={handleEmailEdit}
+                        value={values.email || ''}
+                        onChange={handleChange}
                         id='input-email'
                         name='email'
-                        className='profile__input'
+                        className={`profile__input ${errors.email ? 'profile__input_red' : ''}`}
                         placeholder='E-mail'
                         required
+                        minLength='4'
+                        maxLength='30'
+                        pattern='^\S+@\S+\.\S+$'
                     />
                 </div>
+                <span className={`profile__error ${errors.email ? 'profile__error_active' : ''}`}>{errors.email}</span>
                 <button
                     type='submit'
                     aria-label='Редактировать'
                     className={`profile__link ${isDisabled ? 'profile__link_disabled' : ''}`}
+                    disabled={isDisabled}
                 >
                     Редактировать
                 </button>
