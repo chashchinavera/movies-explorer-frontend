@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Header from '../Header/Header';
 
 function Register({ formRegisterValue, setFormRegisterValue, onRegister, isSuccess, errorMessage }) {
@@ -42,12 +43,17 @@ function Register({ formRegisterValue, setFormRegisterValue, onRegister, isSucce
                             onChange={handleEmailChange}
                             id='input-email'
                             name='email'
-                            className='register__input'
+                            className={`register__input ${errorMessage ? 'register__input_red' : ''}`}
                             placeholder='E-mail'
                             required
                             minLength='2'
                             maxLength='40'
+                            pattern="^[А-ЯЁа-яёA-Za-z -]+$"
                         />
+                        <p className='register__error'>
+                            {errorMessage &&
+                                "Это поле должно содержать только латиницу, кириллицу, пробел или дефис."}
+                        </p>
                     </div>
                     <div className='register__column'>
                         <span className='register__text'>Пароль</span>

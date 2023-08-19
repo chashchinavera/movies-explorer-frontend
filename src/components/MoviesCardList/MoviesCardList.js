@@ -9,8 +9,9 @@ import {
     CARDS_LOAD_DESKTOP,
     CARDS_LOAD_MOBILE,
 } from "../../config/config";
+import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList({ movies }) {
+function MoviesCardList({ movies, isLoading }) {
 
     const [moviesAmount, setMoviesAmount] = useState(0);
 
@@ -42,6 +43,7 @@ function MoviesCardList({ movies }) {
 
     return (
         <section className='movies__list'>
+            {isLoading && <Preloader />}
             <div className='movies__cards'>
                 {movies.slice(0, moviesAmount).map((movie) => (
                     <MoviesCard

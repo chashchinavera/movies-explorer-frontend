@@ -10,6 +10,7 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
   const [switchOnButton, setSwitchOnButton] = useState(false);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [filteredDurationMovies, setFilteredDurationMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Получение отфильтрованного массива фильмов
   function handleMovies(movies, request, switchOnButton) {
@@ -30,6 +31,7 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
       const movies = JSON.parse(localStorage.getItem('allMovies'));
       handleMovies(movies, request, switchOnButton);
     } else {
+      setIsLoading(true);
       moviesApi.getMovies()
         .then((movies) => {
           handleMovies(movies, request, switchOnButton);
@@ -37,6 +39,9 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
         .catch((err) => {
           console.log(err);
         })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   }
 
@@ -63,7 +68,7 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
       }
     }
   }, []);
-  
+
   return (
     <div className='movies'>
       <Header
@@ -79,6 +84,7 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
         />
         <MoviesCardList
           movies={filteredDurationMovies}
+          isLoading={isLoading}
         />
       </main>
       <Footer />

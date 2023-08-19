@@ -63,3 +63,6 @@
 
 /*notFound*/
 @import url(./components/NotFound/NotFound.css);
+
+/*preloader*/
+@import url(./components/Preloader/Preloader.css);

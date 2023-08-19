@@ -1,19 +1,19 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function SavedMoviesList({ cards, cardButton }) {
+function SavedMoviesList({ movies }) {
 
     return (
         <section className='save__list'>
             <div className='movies__cards'>
-                {cards.map((card) => (
+                {movies.map((movie) => (
                     <MoviesCard
-                        card={card}
-                        key={card.movieiId}
-                        name={card.nameRU}
-                        duration={card.duration}
-                        image={card.image}
-                        movieId={card.movieId}
-                        cardButton={{state:true}}
+                        movie={movie}
+                        key={movie.movieiId}
+                        name={movie.nameRU}
+                        duration={movie.duration}
+                        image={movie.image}
+                        movieId={movie.movieId}
+                        cardButton={{ state: true }}
                     />
                 ))}
             </div>

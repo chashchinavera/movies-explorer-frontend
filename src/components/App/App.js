@@ -145,7 +145,7 @@ function App() {
                             <ProctectedRoute
                                 element={SavedMovies}
                                 loggedIn={loggedIn}
-                                savedMovies={savedMovies}
+                                movies={savedMovies}
                             />
                         }
                     />
