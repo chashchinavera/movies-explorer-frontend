@@ -56,7 +56,7 @@ class Api {
     }
   
     // Добавление фильма в сохраненные
-    saveCard(movieId, jwt) {
+    saveMovie(movieId, jwt) {
       return this._request(`${this._link}movies/${movieId}/likes`, {
         headers: {
           'Authorization': `Bearer ${jwt}`,
@@ -67,7 +67,7 @@ class Api {
     }
   
     // Удаление фильма из сохраненных
-    deleteCard(movieId, jwt) {
+    deleteMovie(movieId, jwt) {
       return this._request(`${this._link}movies/${movieId}/likes`, {
         headers: {
           'Authorization': `Bearer ${jwt}`,

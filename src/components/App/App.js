@@ -21,6 +21,7 @@ function App() {
     const [currentUser, setCurrentUser] = useState({});
     const [savedMovies, setSavedMovies] = useState([]);
 
+
     const [formRegisterValue, setFormRegisterValue] = useState({
         email: '',
         password: '',
@@ -116,6 +117,24 @@ function App() {
         return movies.filter((movie) => movie.duration < MOVIE_DURATION_SHORT);
     }
 
+    function handleMovieSave(data) {
+        mainApi.saveMovie(data, jwt)
+            .then((result) => {
+                setSavedMovies([result, ...savedMovies]);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    function handleMovieDelete(movie) {
+        mainApi.deleteMovie(movie._id, jwt)
+            .then(() => {
+                setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
+            })
+            .catch((err) => console.log(err));
+    }
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className='page'>
@@ -145,7 +164,11 @@ function App() {
                             <ProctectedRoute
                                 element={SavedMovies}
                                 loggedIn={loggedIn}
+                                filterMovies={filterMovies}
+                                filterDuration={filterDuration}
                                 movies={savedMovies}
+                                onDelete={handleMovieDelete}
+                                onSave={handleMovieSave}
                             />
                         }
                     />
@@ -159,6 +182,7 @@ function App() {
                                 email={email}
                                 setEmail={setEmail}
                                 onUpdateUser={handleUpdateUser}
+                                errorMessage={errorMessage}
                             />
                         }
                     />

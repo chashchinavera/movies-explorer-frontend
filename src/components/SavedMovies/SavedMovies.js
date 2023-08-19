@@ -1,12 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import SavedMoviesList from '../SavedMoviesList/SavedMoviesList';
 import SearchForm from "../SearchForm/SearchForm";
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function SavedMovies({ loggedIn, savedMovies, formSearchMovie, setFormSearchMovie }) {
+function SavedMovies({ loggedIn, filterMovies, filterDuration, onDelete, onSave, movies }) {
 
-    const [switchOnButtonSave, setSwitchOnButtonSave] = useState(false);
+    const [switchOnButton, setSwitchOnButton] = useState(false);
+    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [request, setRequest] = useState('');
+
+    function handleMoviesSearch(request) {
+        setRequest(request);
+    }
+
+    function handleSwitchButton() {
+        setSwitchOnButton(!switchOnButton);
+    }
+
+    useEffect(() => {
+        const moviesFilteredList = filterMovies(movies, request);
+        setFilteredMovies(switchOnButton ? filterDuration(moviesFilteredList) : moviesFilteredList);
+    }, [movies, switchOnButton, request]);
 
     return (
         <div className='movies'>
@@ -16,14 +31,18 @@ function SavedMovies({ loggedIn, savedMovies, formSearchMovie, setFormSearchMovi
             />
             <main>
                 <SearchForm
-                    switchOnButtonSave={switchOnButtonSave}
-                    setSwitchOnButtonSave={setSwitchOnButtonSave}
-                    formSearchMovie={formSearchMovie}
-                    setFormSearchMovie={setFormSearchMovie}
+                    switchOnButton={switchOnButton}
+                    onSubmit={handleMoviesSearch}
+                    onChange={handleSwitchButton}
+                    request={request}
+                    setRequest={setRequest}
                 />
-                <SavedMoviesList
-                    cards={savedMovies}
-                />
+                <MoviesCardList
+                    movies={movies}
+                    onDelete={onDelete}
+                    onSave={onSave}
+                    isMoviesSaved={true}
+                    />
             </main>
             <Footer />
         </div>

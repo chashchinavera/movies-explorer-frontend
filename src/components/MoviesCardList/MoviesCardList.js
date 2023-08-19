@@ -11,7 +11,7 @@ import {
 } from "../../config/config";
 import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList({ movies, isLoading }) {
+function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved }) {
 
     const [moviesAmount, setMoviesAmount] = useState(0);
 
@@ -41,27 +41,57 @@ function MoviesCardList({ movies, isLoading }) {
         }
     }
 
+    function getSavedMovie(movies, movie) {
+        return movies.find((movies) => movies.movieId === movie.id);
+    }
+
     return (
         <section className='movies__list'>
             {isLoading && <Preloader />}
             <div className='movies__cards'>
-                {movies.slice(0, moviesAmount).map((movie) => (
-                    <MoviesCard
-                        movie={movie}
-                        key={movie.movieiId}
-                        name={movie.nameRU}
-                        duration={movie.duration}
-                        image={movie.image.url}
-                        movieId={movie.movieId}
-                        trailerLink={movie.trailerLink}
-                        cardButton={{ state: false }}
-                    />
-                ))}
+                {window.location.pathname === '/saved-movies' ? (
+                    <>
+                        {movies.map((movie) => (
+                            <MoviesCard
+                                movie={movie}
+                                key={movie._id}
+                                name={movie.nameRU}
+                                duration={movie.duration}
+                                image={movie.image}
+                                movieId={movie.movieId}
+                                trailerLink={movie.trailerLink}
+                                cardButton={{ state: true }}
+                                onDelete={onDelete}
+                                onSave={onSave}
+                                isMoviesSaved={isMoviesSaved}
+                                savedCard={getSavedMovie(movies, movie)}
+                            />
+                        ))
+                        }
+                    </>
+                ) : (
+                    <>
+                        {movies.slice(0, moviesAmount).map((movie) => (
+                            <MoviesCard
+                                movie={movie}
+                                key={movie.id}
+                                name={movie.nameRU}
+                                duration={movie.duration}
+                                image={movie.image.url}
+                                movieId={movie.movieId}
+                                trailerLink={movie.trailerLink}
+                                cardButton={{ state: false }}
+                            />
+                        ))
+                        }
+                        {movies.length > moviesAmount &&
+                            <button className='movies__more' type='button' aria-label='Ещё' onClick={loadMovies}>
+                                Ещё
+                            </button>}
+                    </>
+                )}
             </div>
-            {movies.length > moviesAmount &&
-                <button className='movies__more' type='button' aria-label='Ещё' onClick={loadMovies}>
-                    Ещё
-                </button>}
+
         </section>
     )
 }

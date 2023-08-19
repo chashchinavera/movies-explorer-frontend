@@ -85,6 +85,7 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
         <MoviesCardList
           movies={filteredDurationMovies}
           isLoading={isLoading}
+          isMoviesSaved={false}
         />
       </main>
       <Footer />

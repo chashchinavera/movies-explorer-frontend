@@ -49,9 +49,6 @@
 /*moviesCard*/
 @import url(./components/MoviesCard/MoviesCard.css);
 
-/*savedMoviesList*/
-@import url(./components/SavedMoviesList/SavedMoviesList.css);
-
 /*profile*/
 @import url(./components/Profile/Profile.css);
 
