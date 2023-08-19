@@ -17,6 +17,7 @@ function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
 
     function handleNameEdit(evt) {
         setName(evt.target.value);
+        console.log(isDisabled)
     }
 
     function handleEmailEdit(evt) {
@@ -24,9 +25,8 @@ function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
     }
 
     function inputDisabled() {
-        if ((name === currentUser.name) || (email === currentUser.email)) {
+        if ((name !== currentUser.name) || (email !== currentUser.email)) {
             setIsDisabled(false);
-            console.log(isDisabled);
         } else {
             setIsDisabled(true);
         }
@@ -34,7 +34,8 @@ function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
 
     useEffect(() => {
         inputDisabled();
-    }, []);
+        console.log(isDisabled, '1')
+    }, [name, email, currentUser.name, currentUser.email]);
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -87,8 +88,7 @@ function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
                 <button
                     type='submit'
                     aria-label='Редактировать'
-                    className={`profile__link ${isDisabled} ? 'profile__link_active' : ''`}
-                    disabled={isDisabled}
+                    className={`profile__link ${isDisabled ? 'profile__link_disabled' : ''}`}
                 >
                     Редактировать
                 </button>
@@ -96,7 +96,7 @@ function Profile({ loggedIn, onSignOut, onUpdateUser, email, setEmail }) {
             <button
                 type='button'
                 aria-label='Выйти из аккаунта'
-                className='profile__link profile__link_active profile__exit'
+                className='profile__link profile__exit'
                 onClick={onSignOut}
             >
                 Выйти из аккаунта

@@ -70,10 +70,14 @@
     margin: 203px auto 0;
     padding: 0;
     width: fit-content;
+    pointer-events: none;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
-.profile__link_active {
-    cursor: pointer;
+.profile__link_disabled {
+cursor: none;
+pointer-events: none;
 }
 
 .profile__exit {
