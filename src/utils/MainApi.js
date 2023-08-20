@@ -95,8 +95,8 @@ class Api {
   
   
   const mainApi = new Api({
-    link: 'http://localhost:3000/',
-    // link: 'https://api.chashchinavv.nomoreparties.sbs/',
+    // link: 'http://localhost:3000/',
+    link: 'https://api.chashchinavv.nomoreparties.sbs/',
   });
   
   export default mainApi;

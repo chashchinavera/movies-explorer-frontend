@@ -1,5 +1,5 @@
-// const BASE_URL = 'https://api.chashchinavv.nomoreparties.sbs';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://api.chashchinavv.nomoreparties.sbs';
+// const BASE_URL = 'http://localhost:3000';
 
 
 export const register = (name, email, password) => {
