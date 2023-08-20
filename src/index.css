@@ -63,3 +63,6 @@
 
 /*preloader*/
 @import url(./components/Preloader/Preloader.css);
+
+/*infoTooltip*/
+@import url(./components/InfoTooltip/InfoTooltip.css);

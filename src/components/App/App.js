@@ -13,12 +13,16 @@ import * as Authorisation from '../Auth/Auth.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import ProctectedRoute from '../ProctectedRoute/ProctectedRoute.js'
 import { MOVIE_DURATION_SHORT } from '../../config/config';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 function App() {
 
     const [email, setEmail] = useState('');
     const [currentUser, setCurrentUser] = useState({});
     const [savedMovies, setSavedMovies] = useState([]);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [successText, setSuccessText] = useState('');
+    const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
 
     const [formRegisterValue, setFormRegisterValue] = useState({
         email: '',
@@ -34,6 +38,13 @@ function App() {
     const jwt = localStorage.getItem('jwt');
     const loggedIn = localStorage.getItem('loggedIn');
 
+    const hideMessage = () => {
+        setTimeout(() => {
+            setIsOpenInfoTooltip(false);
+            setSuccessText('');
+        }, 1500);
+    };
+
     function signOut() {
         localStorage.clear('jwt', 'loggedIn', 'allMovies', 'movies', 'switchOnButton', 'request');
         navigate('/signin');
@@ -46,6 +57,10 @@ function App() {
             .then(() => {
                 navigate('/signin');
                 setFormRegisterValue({ name: '', email: '', password: '' });
+                setIsSuccess(true);
+                setSuccessText('Вы успешно зарегистрированы')
+                setIsOpenInfoTooltip(true);
+                hideMessage();
             })
             .catch((err) => {
                 console.log(err);
@@ -94,6 +109,10 @@ function App() {
             .then((data) => {
                 const { name, email } = data;
                 setCurrentUser({ ...currentUser, name: name, email: email });
+                setIsSuccess(true);
+                setSuccessText('Данные пользователя успешно изменены')
+                setIsOpenInfoTooltip(true);
+                hideMessage();
             })
             .catch((err) => {
                 console.log(err);
@@ -206,6 +225,12 @@ function App() {
                     />
                 </Routes>
             </div>
+            <InfoTooltip
+                isOpenInfoTooltip={isOpenInfoTooltip}
+                isSuccess={isSuccess}
+                successText={successText}
+                errorText={'Что-то пошло не так! Попробуйте ещё раз.'}
+            />
         </CurrentUserContext.Provider>
     )
 }
