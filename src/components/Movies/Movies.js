@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import moviesApi from '../../utils/MoviesApi';
 
-function Movies({ loggedIn, filterMovies, filterDuration, onSave }) {
+function Movies({ loggedIn, filterMovies, filterDuration, onSave, onDelete, savedMovies }) {
 
   const [switchOnButton, setSwitchOnButton] = useState(false);
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -36,6 +36,7 @@ function Movies({ loggedIn, filterMovies, filterDuration, onSave }) {
       moviesApi.getMovies()
         .then((movies) => {
           handleMovies(movies, request, switchOnButton);
+          setLocalMovies(true);
         })
         .catch((err) => {
           console.log(err);
@@ -49,11 +50,15 @@ function Movies({ loggedIn, filterMovies, filterDuration, onSave }) {
   //Получение отфильтрованного массива короткометражек
   function handleSwitchButton() {
     setSwitchOnButton(!switchOnButton);
-    if (!switchOnButton) {
+
+    if (!switchOnButton === true) {
       setFilteredDurationMovies(filterDuration(filteredMovies));
+    } else {
+      setFilteredDurationMovies(filteredMovies);
     }
     localStorage.setItem('switchOnButton', !switchOnButton);
   }
+
 
   //Получение отфильтрованного массива фильмов после перезагрузки страницы
   useEffect(() => {
@@ -61,6 +66,7 @@ function Movies({ loggedIn, filterMovies, filterDuration, onSave }) {
       const movies = JSON.parse(localStorage.getItem('movies'));
       setLocalMovies(true);
       setFilteredMovies(movies);
+
       if (localStorage.getItem('switchOnButton') === 'true') {
         setSwitchOnButton(true);
         setFilteredDurationMovies(filterDuration(movies));
@@ -89,7 +95,9 @@ function Movies({ loggedIn, filterMovies, filterDuration, onSave }) {
           isLoading={isLoading}
           isMoviesSaved={false}
           onSave={onSave}
+          onDelete={onDelete}
           localMovies={localMovies}
+          savedMovies={savedMovies}
         />
       </main>
       <Footer />

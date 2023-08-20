@@ -6,7 +6,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile({ loggedIn, onSignOut, onUpdateUser }) {
 
-    const { values, setValues, errors, handleChange } = useFormValidation();
+    const { values, setValues, errors, handleChange, isValid } = useFormValidation();
 
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -87,7 +87,7 @@ function Profile({ loggedIn, onSignOut, onUpdateUser }) {
                 <button
                     type='submit'
                     aria-label='Редактировать'
-                    className={`profile__link ${isDisabled ? 'profile__link_disabled' : ''}`}
+                    className={`profile__link ${!isDisabled && isValid ? '' : 'profile__link_disabled'}`}
                     disabled={isDisabled}
                 >
                     Редактировать

@@ -1,3 +1,5 @@
+import { BASE_URL } from "../config/config";
+
 class Api {
 
     constructor({ link, headers }) {
@@ -56,24 +58,37 @@ class Api {
     }
   
     // Добавление фильма в сохраненные
-    saveMovie(movieId, jwt) {
-      return this._request(`${this._link}movies/${movieId}/likes`, {
+    saveMovie(data, jwt) {
+      return this._request(`${this._link}movies`, {
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${jwt}`,
           'Content-Type': 'application/json',
         },
-        method: 'POST',
+        body: JSON.stringify({
+          country: data.country,
+          director: data.director,
+          duration: data.duration,
+          year: data.year,
+          description: data.description,
+          image: `${BASE_URL}${data.image.url}`,
+          trailerLink: data.trailerLink,
+          thumbnail: `${BASE_URL}${data.image.formats.thumbnail.url}`,
+          movieId: data.id,
+          nameRU: data.nameRU,
+          nameEN: data.nameEN,
+      })
       })
     }
   
     // Удаление фильма из сохраненных
     deleteMovie(movieId, jwt) {
-      return this._request(`${this._link}movies/${movieId}/likes`, {
+      return this._request(`${this._link}movies/${movieId}/`, {
+        method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${jwt}`,
           'Content-Type': 'application/json',
         },
-        method: 'DELETE',
       })
     }
   }

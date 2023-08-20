@@ -11,7 +11,7 @@ import {
 } from "../../config/config";
 import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved, localMovies }) {
+function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved, localMovies, savedMovies }) {
 
     const [moviesAmount, setMoviesAmount] = useState(0);
 
@@ -41,55 +41,60 @@ function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved, lo
         }
     }
 
-    function getSavedMovie(movies, movie) {
-        return movies.find((movies) => movies.movieId === movie.id);
-    }
-
     return (
         <section className='movies__list'>
             {isLoading && <Preloader />}
             <div className='movies__cards'>
-                {window.location.pathname === '/saved-movies' ? (
+                {isMoviesSaved ? (
                     <>
-                        {movies.map((movie) => (
-                            <MoviesCard
-                                movie={movie}
-                                key={movie._id}
-                                name={movie.nameRU}
-                                duration={movie.duration}
-                                image={movie.image}
-                                movieId={movie.movieId}
-                                trailerLink={movie.trailerLink}
-                                cardButton={{ state: true }}
-                                onDelete={onDelete}
-                                onSave={onSave}
-                                isMoviesSaved={isMoviesSaved}
-                                savedCard={getSavedMovie(movies, movie)}
-                            />
-                        ))
-                        }
+                        <div className='movies__grid'>
+                            {savedMovies.slice(0, moviesAmount).map((saveMovie) => (
+                                <MoviesCard
+                                    card={saveMovie}
+                                    key={isMoviesSaved ? saveMovie._id : saveMovie.id}
+                                    onSave={onSave}
+                                    onDelete={onDelete}
+                                    isMoviesSaved={isMoviesSaved}
+                                    savedCard={savedMovies}
+                                    savedMovies={savedMovies}
+                                    name={saveMovie.nameRU}
+                                    duration={saveMovie.duration}
+                                    image={saveMovie.image}
+                                    trailerLink={saveMovie.trailerLink}
+                                />
+                            ))
+                            }
+                        </div>
+                        {savedMovies.length > moviesAmount &&
+                            <button className='movies__more' type='button' aria-label='Ещё' onClick={loadMovies}>
+                                Ещё
+                            </button>}
                     </>
                 ) : (localMovies ? (movies.length > 0 ?
                     <>
-                        {movies.slice(0, moviesAmount).map((movie) => (
-                            <MoviesCard
-                                movie={movie}
-                                key={movie.id}
-                                name={movie.nameRU}
-                                duration={movie.duration}
-                                image={movie.image.url}
-                                movieId={movie.movieId}
-                                trailerLink={movie.trailerLink}
-                                cardButton={{ state: false }}
-                            />
-                        ))
-                        }
+                        <div className='movies__grid'>
+                            {movies.slice(0, moviesAmount).map((movie) => (
+                                <MoviesCard
+                                    card={movie}
+                                    key={isMoviesSaved ? movie._id : movie.id}
+                                    onSave={onSave}
+                                    onDelete={onDelete}
+                                    isMoviesSaved={isMoviesSaved}
+                                    savedCard={savedMovies}
+                                    savedMovies={savedMovies}
+                                    name={movie.nameRU}
+                                    duration={movie.duration}
+                                    image={movie.image}
+                                    trailerLink={movie.trailerLink}
+                                />
+                            ))
+                            }</div>
                         {movies.length > moviesAmount &&
                             <button className='movies__more' type='button' aria-label='Ещё' onClick={loadMovies}>
                                 Ещё
                             </button>}
                     </>
-                    : <p className='movies__error'>Фильмы не найдены</p> 
+                    : <p className='movies__error'>Ничего не найдено</p>
                 ) : ''
                 )}
             </div>

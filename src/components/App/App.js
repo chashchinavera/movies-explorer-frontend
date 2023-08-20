@@ -42,7 +42,7 @@ function App() {
         setTimeout(() => {
             setIsOpenInfoTooltip(false);
             setSuccessText('');
-        }, 1500);
+        }, 1000);
     };
 
     function signOut() {
@@ -92,7 +92,7 @@ function App() {
                     Promise.all([mainApi.getUserData(jwt), mainApi.getInitialCards(jwt)])
                         .then(([currentUser, savedMovies]) => {
                             setCurrentUser(currentUser);
-                            setSavedMovies(savedMovies);
+                            setSavedMovies(savedMovies.reverse());
                         })
                         .catch(err => {
                             console.log(err);
@@ -140,13 +140,16 @@ function App() {
             })
             .catch((err) => {
                 console.log(err);
+                console.log(jwt, data)
+                setIsOpenInfoTooltip(true);
+                hideMessage();
             })
     }
 
-    function handleMovieDelete(movie) {
-        mainApi.deleteMovie(movie._id, jwt)
+    function handleMovieDelete(data) {
+        mainApi.deleteMovie(data._id, jwt)
             .then(() => {
-                setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
+                setSavedMovies((state) => state.filter((card) => card !== data));
             })
             .catch((err) => console.log(err));
     }
@@ -172,6 +175,10 @@ function App() {
                                 filterMovies={filterMovies}
                                 filterDuration={filterDuration}
                                 onSave={handleMovieSave}
+                                onDelete={handleMovieDelete}
+                                savedMovies={savedMovies}
+                                setIsOpenInfoTooltip={setIsOpenInfoTooltip}
+                                hideMessage={hideMessage}
                             />
                         }
                     />
@@ -184,7 +191,9 @@ function App() {
                                 filterMovies={filterMovies}
                                 filterDuration={filterDuration}
                                 movies={savedMovies}
+                                onSave={handleMovieSave}
                                 onDelete={handleMovieDelete}
+                                savedMovies={savedMovies}
                             />
                         }
                     />

@@ -1,34 +1,29 @@
-import { useState } from 'react';
 import { movieDuration } from '../../utils/constants';
 import { BASE_URL } from '../../config/config';
 
-function MoviesCard({ card, name, image, duration, cardButton, trailerLink, onDelete, onSave, movies, isMoviesSaved }) {
+function MoviesCard({ card, name, image, duration, trailerLink, onDelete, onSave, isMoviesSaved, savedMovies }) {
 
-    const [saveButton, setSaveButton] = useState(false);
-
+    const isSaved = savedMovies && savedMovies.some((movie) => movie.movieId === card.id);
 
     function handleSaveButton() {
-        if (saveButton) {
-            onDelete(movies.filter((movie) => movie.movieId === card.id)[0]);
-        } else {
-            onSave(card);
-        }
+        onSave(card);
     }
 
-    // function handleDeleteButton() {
-    //     onDelete(card);
-    // }
+    function handleDeleteButton() {
+        onDelete(card);
+    }
 
     return (
-        <div className='movie'>
-            <img className='movie__image' alt={name} src={!isMoviesSaved ? `${BASE_URL}${image}` : image} />
+        <div className='movie' id={card._id}>
+            <img className='movie__image' alt={name} src={!isMoviesSaved ? `${BASE_URL}${image.url}` : image} />
             <button
-                className={`movie__button ${cardButton.state ? 'movie__delete' : ''} ${!cardButton.state && saveButton ? 'movie__button_active' : ''}`}
+                className={`movie__button ${isMoviesSaved ? 'movie__delete' : ''}${isSaved ? 'movie__button_active' : ''}`}
                 type='button'
                 aria-label='Сохранить'
-                onClick={handleSaveButton}
+                onClick={!isMoviesSaved ? handleSaveButton : handleDeleteButton}
+                disabled={isSaved}
             >
-                {!cardButton.state && !saveButton ? 'Сохранить' : ''}
+                {isSaved || isMoviesSaved ? '' : 'Сохранить'}
             </button>
             <div className='movie__info'>
                 <a className='movie__title' href={trailerLink} target='_blank' rel='noreferrer'>{name}</a>
