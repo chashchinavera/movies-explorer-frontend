@@ -14,6 +14,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import ProctectedRoute from '../ProctectedRoute/ProctectedRoute.js'
 import { MOVIE_DURATION_SHORT } from '../../config/config';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import useFormValidation from '../../hooks/useFormValidation';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [successText, setSuccessText] = useState('');
     const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
+    const { resetForm } = useFormValidation();
 
     const [formRegisterValue, setFormRegisterValue] = useState({
         email: '',
@@ -46,8 +48,9 @@ function App() {
     };
 
     function signOut() {
-        localStorage.clear('jwt', 'loggedIn', 'allMovies', 'movies', 'switchOnButton', 'request');
+        localStorage.clear();
         navigate('/signin');
+        resetForm();
         console.log(currentUser);
     }
 
