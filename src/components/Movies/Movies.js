@@ -5,12 +5,13 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import moviesApi from '../../utils/MoviesApi';
 
-function Movies({ loggedIn, filterMovies, filterDuration }) {
+function Movies({ loggedIn, filterMovies, filterDuration, onSave }) {
 
   const [switchOnButton, setSwitchOnButton] = useState(false);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [filteredDurationMovies, setFilteredDurationMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [localMovies, setLocalMovies] = useState(false);
 
   //Получение отфильтрованного массива фильмов
   function handleMovies(movies, request, switchOnButton) {
@@ -58,6 +59,7 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
   useEffect(() => {
     if (localStorage.getItem('movies')) {
       const movies = JSON.parse(localStorage.getItem('movies'));
+      setLocalMovies(true);
       setFilteredMovies(movies);
       if (localStorage.getItem('switchOnButton') === 'true') {
         setSwitchOnButton(true);
@@ -86,6 +88,8 @@ function Movies({ loggedIn, filterMovies, filterDuration }) {
           movies={filteredDurationMovies}
           isLoading={isLoading}
           isMoviesSaved={false}
+          onSave={onSave}
+          localMovies={localMovies}
         />
       </main>
       <Footer />

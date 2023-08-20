@@ -60,7 +60,7 @@ function Profile({ loggedIn, onSignOut, onUpdateUser }) {
                         required
                         minLength='2'
                         maxLength='30'
-                        pattern='^[А-ЯЁа-яёA-Za-z -]+$'
+                        pattern='^[— А-ЯЁа-яёA-Za-z]+$'
                     />
                 </div>
                 <span className={`profile__error ${errors.name ? 'profile__error_active' : ''}`}>

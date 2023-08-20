@@ -31,6 +31,16 @@
     border: #424242 1px solid;
 }
 
+.movies__error {
+    margin: 0 auto;
+    padding: 0;
+    color: #EE3465;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
 @media screen and (max-width: 1000px) {
     .movies__list {
         padding: 0 30px;
@@ -45,6 +55,10 @@
         margin: 58px auto 100px;
         padding: 10px 10px 9px;
     }
+
+    .movies__error {
+    font-size: 25px;
+}
 }
 
 @media screen and (max-width: 550px) {
@@ -63,5 +77,9 @@
         margin: 61px auto 119px;
         padding: 10px 10px 9px;
         width: 240px;
+    }
+
+    .movies__error {
+        font-size: 17px;
     }
 }

@@ -152,6 +152,7 @@ function App() {
                                 loggedIn={loggedIn}
                                 filterMovies={filterMovies}
                                 filterDuration={filterDuration}
+                                onSave={handleMovieSave}
                             />
                         }
                     />
@@ -165,7 +166,6 @@ function App() {
                                 filterDuration={filterDuration}
                                 movies={savedMovies}
                                 onDelete={handleMovieDelete}
-                                onSave={handleMovieSave}
                             />
                         }
                     />

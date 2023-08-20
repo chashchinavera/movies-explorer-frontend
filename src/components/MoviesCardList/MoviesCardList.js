@@ -11,7 +11,7 @@ import {
 } from "../../config/config";
 import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved }) {
+function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved, localMovies }) {
 
     const [moviesAmount, setMoviesAmount] = useState(0);
 
@@ -69,7 +69,7 @@ function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved }) 
                         ))
                         }
                     </>
-                ) : (
+                ) : (localMovies ? (movies.length > 0 ?
                     <>
                         {movies.slice(0, moviesAmount).map((movie) => (
                             <MoviesCard
@@ -89,6 +89,8 @@ function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved }) 
                                 Ещё
                             </button>}
                     </>
+                    : <p className='movies__error'>Фильмы не найдены</p> 
+                ) : ''
                 )}
             </div>
 

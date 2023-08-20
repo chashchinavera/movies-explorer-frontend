@@ -31,9 +31,12 @@ function Register({ onRegister, formRegisterValue }) {
                             required
                             minLength='2'
                             maxLength='30'
-                            pattern='^[А-ЯЁа-яёA-Za-z -]+$'
+                            pattern='^[— А-ЯЁа-яёA-Za-z]+$'
                         />
-                        <span className='register__error'>{errors.name}</span>
+                        <span className='register__error'>
+                            {errors.name &&
+                                'Это поле должно содержать только латиницу, кириллицу, пробел или дефис.'}
+                        </span>
                     </div>
                     <div className='register__column'>
                         <span className='register__text'>E-mail</span>
