@@ -1,32 +1,27 @@
-import { movieDuration } from '../../utils/constants';
-import { BASE_URL } from '../../config/config';
+import { useState } from 'react';
+import { movieDuration } from "../../utils/constants";
 
-function MoviesCard({ card, name, image, duration, trailerLink, onDelete, onSave, isMoviesSaved, savedMovies }) {
+function MoviesCard({ name, image, duration, cardButton }) {
 
-    const isSaved = savedMovies && savedMovies.some((movie) => movie.movieId === card.id);
+    const [saveButton, setSaveButton] = useState(false);
 
     function handleSaveButton() {
-        onSave(card);
-    }
-
-    function handleDeleteButton() {
-        onDelete(card);
+        setSaveButton(!saveButton);
     }
 
     return (
-        <div className='movie' id={card._id}>
-            <img className='movie__image' alt={name} src={!isMoviesSaved ? `${BASE_URL}${image.url}` : image} />
+        <div className='movie'>
+            <img className='movie__image' alt={name} src={image} />
             <button
-                className={`movie__button ${isMoviesSaved ? 'movie__delete' : ''}${isSaved ? 'movie__button_active' : ''}`}
+                className={`movie__button ${cardButton.state ? 'movie__delete' : ''} ${!cardButton.state && saveButton ? 'movie__button_active' : ''}`}
                 type='button'
                 aria-label='Сохранить'
-                onClick={!isMoviesSaved ? handleSaveButton : handleDeleteButton}
-                disabled={isSaved}
+                onClick={handleSaveButton}
             >
-                {isSaved || isMoviesSaved ? '' : 'Сохранить'}
+                {!cardButton.state && !saveButton ? 'Сохранить' : ''}
             </button>
             <div className='movie__info'>
-                <a className='movie__title' href={trailerLink} target='_blank' rel='noreferrer'>{name}</a>
+                <p className='movie__title'>{name}</p>
                 <p className='movie__duration'>{movieDuration({ duration })}</p>
             </div>
         </div>

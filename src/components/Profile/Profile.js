@@ -1,103 +1,84 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from './../Header/Header';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ loggedIn, onSignOut, onUpdateUser, values, setValues, errors, handleChange, isValid }) {
+function Profile() {
+    const name = 'Виталий';
+    const email = 'test@test.ru'
 
-    const currentUser = React.useContext(CurrentUserContext);
+    const [loggedIn, setLoggedIn] = useState(true);
 
-    const [isDisabled, setIsDisabled] = useState(true);
+    function handleSubmit(e) {
+        e.preventDefault();
 
-    useEffect(() => {
-        setValues({ name: currentUser.name, email: currentUser.email });
-    }, [currentUser]);
-
-    function inputDisabled() {
-        if ((values.name !== currentUser.name) || (values.email !== currentUser.email)) {
-            setIsDisabled(false);
-        } else {
-            setIsDisabled(true);
-        }
+        console.log('Данные изменены');
     }
 
-    useEffect(() => {
-        inputDisabled();
-    }, [values.name, values.email, currentUser.name, currentUser.email]);
-
-    function handleSubmit(evt) {
-        evt.preventDefault();
-        onUpdateUser({
-            name: values['name'],
-            email: values['email'],
-        });
+    function handleNameEdit() {
+        console.log('Имя изменено');
     }
 
+    function handleEmailEdit() {
+        console.log('Email изменен');
+    }
+
+    function handleSignOut() {
+        console.log('Вы вышли из аккаунта');
+    }
     return (
         <section className='profile'>
             <Header
                 loggedIn={loggedIn}
                 theme={{ short: false }}
             />
-            <h2 className='profile__hello'>Привет, {currentUser.name}!</h2>
+            <h2 className='profile__hello'>Привет, {name}!</h2>
             <form
-                onSubmit={handleSubmit}
                 className='profile__form'
-            >
+                onSubmit={handleSubmit}
+                id='profile'>
                 <div className='profile__string'>
                     <span className='profile__text'>Имя</span>
                     <input
                         type='text'
-                        value={values.name || ''}
-                        onChange={handleChange}
-                        id='input-name'
+                        onChange={handleNameEdit}
+                        value={name}
+                        id='input__name'
                         name='name'
-                        className={`profile__input ${errors.name ? 'profile__input_red' : ''}`}
+                        className='profile__input'
                         placeholder='Имя'
                         required
                         minLength='2'
-                        maxLength='30'
-                        pattern='^[— А-ЯЁа-яёA-Za-z]+$'
+                        maxLength='40'
                     />
                 </div>
-                <span className={`profile__error ${errors.name ? 'profile__error_active' : ''}`}>
-                    {errors.name &&
-                        'Это поле должно содержать только латиницу, кириллицу, пробел или дефис.'}
-                </span>
+                <span className='profile__line' />
                 <div className='profile__string'>
                     <span className='profile__text'>E-mail</span>
                     <input
-                        type='email'
-                        value={values.email || ''}
-                        onChange={handleChange}
-                        id='input-email'
+                        onChange={handleEmailEdit}
+                        value={email}
+                        id='input__email'
                         name='email'
-                        className={`profile__input ${errors.email ? 'profile__input_red' : ''}`}
+                        className='profile__input'
                         placeholder='E-mail'
                         required
-                        minLength='4'
-                        maxLength='30'
-                        pattern='^\S+@\S+\.\S+$'
                     />
                 </div>
-                <span className={`profile__error ${errors.email ? 'profile__error_active' : ''}`}>{errors.email}</span>
-                <button
-                    type='submit'
-                    aria-label='Редактировать'
-                    className={`profile__link ${!isDisabled && isValid ? '' : 'profile__link_disabled'}`}
-                    disabled={isDisabled}
-                >
-                    Редактировать
-                </button>
+                <div className='profile__links'>
+                    <button
+                        type='submit'
+                        aria-label='Редактировать'
+                        className='profile__link'>
+                        Редактировать
+                    </button>
+                    <button
+                        type='button'
+                        aria-label='Выйти из аккаунта'
+                        className='profile__link profile__exit'
+                        onClick={handleSignOut}>
+                        Выйти из аккаунта
+                    </button>
+                </div>
             </form>
-            <button
-                type='button'
-                aria-label='Выйти из аккаунта'
-                className='profile__link profile__exit'
-                onClick={onSignOut}
-            >
-                Выйти из аккаунта
-            </button>
         </section>
     )
 }
