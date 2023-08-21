@@ -1,12 +1,9 @@
 import React from 'react';
-import useFormValidation from '../../hooks/useFormValidation';
 import { useState, useEffect } from 'react';
 import Header from './../Header/Header';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ loggedIn, onSignOut, onUpdateUser }) {
-
-    const { values, setValues, errors, handleChange, isValid } = useFormValidation();
+function Profile({ loggedIn, onSignOut, onUpdateUser, values, setValues, errors, handleChange, isValid }) {
 
     const currentUser = React.useContext(CurrentUserContext);
 

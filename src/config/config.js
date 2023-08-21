@@ -1,8 +1,8 @@
 const BASE_URL = 'https://api.nomoreparties.co';
 
 const MOVIE_DURATION_SHORT = 40;
-const TABLET_WIDTH = 1000;
-const MOBILE_WIDTH = 550;
+const TABLET_WIDTH = 1279;
+const MOBILE_WIDTH = 767;
 const CARDS_AMOUNT_DESKTOP = 12;
 const CARDS_AMOUNT_TABLET = 8;
 const CARDS_AMOUNT_MOBILE = 5;

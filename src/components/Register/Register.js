@@ -1,13 +1,7 @@
 import Header from '../Header/Header';
-import useFormValidation from '../../hooks/useFormValidation';
 
-function Register({ onRegister, formRegisterValue }) {
+function Register({ onRegister, values, errors, isValid, handleChange }) {
 
-    const { values, errors, isValid, handleChange, } = useFormValidation();
-
-    formRegisterValue.name = values.name;
-    formRegisterValue.email = values.email;
-    formRegisterValue.password = values.password;
 
     return (
         <section className='register'>

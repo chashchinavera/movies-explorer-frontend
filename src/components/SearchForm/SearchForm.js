@@ -19,8 +19,6 @@ function SearchForm({ switchOnButton, onSubmit, onChange }) {
     useEffect(() => {
         if (localStorage.getItem('request') && window.location.pathname === '/movies') {
             setRequest(localStorage.getItem('request'));
-        }else         if (localStorage.getItem('savedRequest') && window.location.pathname === '/saved-movies') {
-            setRequest(localStorage.getItem('savedRequest'));
         }
     }, []);
 

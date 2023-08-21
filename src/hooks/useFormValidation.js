@@ -6,8 +6,9 @@ function useFormValidation() {
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
 
-    const handleChange = ({ target }) => {
+    const handleChange = (evt) => {
 
+        const target = evt.target;
         const { name, value } = target;
 
         setValues({
@@ -18,7 +19,7 @@ function useFormValidation() {
             ...errors,
             [name]: target.validationMessage
         });
-        setIsValid(target.closest("form").checkValidity());
+        setIsValid(target.closest('form').checkValidity());
     }
 
     const resetForm = useCallback(
@@ -33,9 +34,9 @@ function useFormValidation() {
     return {
         values,
         setValues,
-        errors,
         isValid,
         setIsValid,
+        errors,
         handleChange,
         resetForm,
     };

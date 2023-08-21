@@ -1,12 +1,6 @@
 import Header from '../Header/Header';
-import useFormValidation from '../../hooks/useFormValidation';
 
-function Login({ onLogin, formLoginValue }) {
-
-    const { values, errors, isValid, handleChange, } = useFormValidation();
-
-    formLoginValue.email = values.email;
-    formLoginValue.password = values.password;
+function Login({ onLogin, values, errors, isValid, handleChange }) {
 
     return (
         <section className='login'>

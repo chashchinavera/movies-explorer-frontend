@@ -12,9 +12,10 @@
 ### **Ссылки на проект**
 ***
 
-IP-адрес: 51.250.92.138
+IP-адрес: 158.160.58.249
 
 Backend: https://api.chashchinavv.nomoreparties.sbs/
+Frontend: https://api.chashchinavv.nomoreparties.sbs/
 
 [Ссылка на репозиторий](https://github.com/chashchinavera/movies-explorer-frontend)   
 [Ссылка на макет в Figma](https://www.figma.com/file/cGlhSAlXLvW1EiDj8PS5vf/dark-2?type=design&node-id=932-2618&mode=design&t=vXihrMsyL2d7HJU5-0)

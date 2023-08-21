@@ -25,10 +25,20 @@ function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved, lo
             setMoviesAmount(CARDS_AMOUNT_MOBILE);
         }
     }
-
+//Изменение отображения количества фильмов в зависимости от разрешения экрана
     useEffect(() => {
         handleMoviesLines();
     }, []);
+
+// //Откладывание выполнения функции отображения фильмов
+useEffect(() => {
+    setTimeout(() => {
+        window.addEventListener('resize', handleMoviesLines);
+    }, 10);
+    return () => {
+        window.removeEventListener('resize', handleMoviesLines);
+    }
+}, []);
 
     function loadMovies() {
         const width = window.innerWidth;
@@ -48,19 +58,18 @@ function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved, lo
                 {isMoviesSaved ? (
                     <>
                         <div className='movies__grid'>
-                            {savedMovies.slice(0, moviesAmount).map((saveMovie) => (
+                            {savedMovies.slice(0, moviesAmount).map((movie) => (
                                 <MoviesCard
-                                    card={saveMovie}
-                                    key={isMoviesSaved ? saveMovie._id : saveMovie.id}
+                                    card={movie}
+                                    key={isMoviesSaved ? movie._id : movie.id}
                                     onSave={onSave}
                                     onDelete={onDelete}
                                     isMoviesSaved={isMoviesSaved}
-                                    savedCard={savedMovies}
                                     savedMovies={savedMovies}
-                                    name={saveMovie.nameRU}
-                                    duration={saveMovie.duration}
-                                    image={saveMovie.image}
-                                    trailerLink={saveMovie.trailerLink}
+                                    name={movie.nameRU}
+                                    duration={movie.duration}
+                                    image={movie.image}
+                                    trailerLink={movie.trailerLink}
                                 />
                             ))
                             }

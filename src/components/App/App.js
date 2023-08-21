@@ -18,23 +18,12 @@ import useFormValidation from '../../hooks/useFormValidation';
 
 function App() {
 
-    const [email, setEmail] = useState('');
     const [currentUser, setCurrentUser] = useState({});
     const [savedMovies, setSavedMovies] = useState([]);
     const [isSuccess, setIsSuccess] = useState(false);
     const [successText, setSuccessText] = useState('');
     const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
-    const { resetForm } = useFormValidation();
-
-    const [formRegisterValue, setFormRegisterValue] = useState({
-        email: '',
-        password: '',
-    });
-
-    const [formLoginValue, setFormLoginValue] = useState({
-        email: '',
-        password: '',
-    });
+    const { resetForm, values, errors, isValid, handleChange, setValues } = useFormValidation();
 
     const navigate = useNavigate();
     const jwt = localStorage.getItem('jwt');
@@ -48,7 +37,7 @@ function App() {
     };
 
     function signOut() {
-        localStorage.clear();
+        localStorage.clear('jwt', 'loggedIn', 'allMovies', 'movies', 'switchOnButton', 'request');
         navigate('/signin');
         resetForm();
         console.log(currentUser);
@@ -56,10 +45,10 @@ function App() {
 
     function handleRegisterSubmit(evt) {
         evt.preventDefault();
-        Authorisation.register(formRegisterValue.name, formRegisterValue.email, formRegisterValue.password)
+        Authorisation.register(values.name, values.email, values.email)
             .then(() => {
                 navigate('/signin');
-                setFormRegisterValue({ name: '', email: '', password: '' });
+                resetForm();
                 setIsSuccess(true);
                 setSuccessText('Вы успешно зарегистрированы')
                 setIsOpenInfoTooltip(true);
@@ -67,45 +56,42 @@ function App() {
             })
             .catch((err) => {
                 console.log(err);
+                setIsOpenInfoTooltip(true);
+                hideMessage();
             })
 
     }
 
     function handleLoginSubmit(evt) {
         evt.preventDefault();
-        Authorisation.login(formLoginValue.email, formLoginValue.password)
+        Authorisation.login(values.email, values.password)
             .then((res) => {
                 if (res.jwt) {
                     localStorage.setItem('jwt', res.jwt);
-                    setFormLoginValue({ email: '', password: '' });
-                    setEmail(formLoginValue.email);
                     localStorage.setItem('loggedIn', true)
                     navigate('/');
                 }
             })
             .catch((err) => {
                 console.log(err);
+                setIsOpenInfoTooltip(true);
+                hideMessage();
             });
     }
 
     useEffect(() => {
-        if (jwt && loggedIn) {
+        if (jwt) {
             Authorisation.checkToken(jwt)
-                .then(() => {
-                    Promise.all([mainApi.getUserData(jwt), mainApi.getInitialCards(jwt)])
-                        .then(([currentUser, savedMovies]) => {
-                            setCurrentUser(currentUser);
-                            setSavedMovies(savedMovies.reverse());
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
+            Promise.all([mainApi.getUserData(jwt), mainApi.getInitialCards(jwt)])
+                .then(([currentUser, savedMovies]) => {
+                    setCurrentUser(currentUser);
+                    setSavedMovies(savedMovies.reverse());
                 })
-                .catch((err) => {
+                .catch(err => {
                     console.log(err);
                 });
         }
-    }, [loggedIn, jwt]);
+    }, [jwt]);
 
     function handleUpdateUser(data) {
         mainApi.sendUserData(data, jwt)
@@ -119,6 +105,8 @@ function App() {
             })
             .catch((err) => {
                 console.log(err);
+                setIsOpenInfoTooltip(true);
+                hideMessage();
             })
     }
 
@@ -140,6 +128,10 @@ function App() {
         mainApi.saveMovie(data, jwt)
             .then((result) => {
                 setSavedMovies([result, ...savedMovies]);
+                setIsSuccess(true);
+                setSuccessText('Фильм сохранен')
+                setIsOpenInfoTooltip(true);
+                hideMessage();
             })
             .catch((err) => {
                 console.log(err);
@@ -153,8 +145,16 @@ function App() {
         mainApi.deleteMovie(data._id, jwt)
             .then(() => {
                 setSavedMovies((state) => state.filter((card) => card !== data));
+                setIsSuccess(true);
+                setSuccessText('Фильм удален')
+                setIsOpenInfoTooltip(true);
+                hideMessage();
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err)
+                setIsOpenInfoTooltip(true);
+                hideMessage();
+            });
     }
 
     return (
@@ -193,10 +193,9 @@ function App() {
                                 loggedIn={loggedIn}
                                 filterMovies={filterMovies}
                                 filterDuration={filterDuration}
-                                movies={savedMovies}
+                                savedMovies={savedMovies}
                                 onSave={handleMovieSave}
                                 onDelete={handleMovieDelete}
-                                savedMovies={savedMovies}
                             />
                         }
                     />
@@ -208,6 +207,11 @@ function App() {
                                 loggedIn={loggedIn}
                                 onSignOut={signOut}
                                 onUpdateUser={handleUpdateUser}
+                                values={values}
+                                setValues={setValues}
+                                errors={errors}
+                                handleChange={handleChange}
+                                isValid={isValid}
                             />
                         }
                     />
@@ -216,7 +220,10 @@ function App() {
                         element={!loggedIn ?
                             <Login
                                 onLogin={handleLoginSubmit}
-                                formLoginValue={formLoginValue}
+                                values={values}
+                                errors={errors}
+                                isValid={isValid}
+                                handleChange={handleChange}
                             />
                             :
                             <Navigate to='/' />}
@@ -226,7 +233,10 @@ function App() {
                         element={!loggedIn ?
                             <Register
                                 onRegister={handleRegisterSubmit}
-                                formRegisterValue={formRegisterValue}
+                                values={values}
+                                errors={errors}
+                                isValid={isValid}
+                                handleChange={handleChange}
                             />
                             :
                             <Navigate to='/' />}
