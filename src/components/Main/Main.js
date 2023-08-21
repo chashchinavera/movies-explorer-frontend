@@ -6,11 +6,13 @@ import Me from './Me/Me';
 import Portfolio from './Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
 
-function Main() {
+function Main({ loggedIn }) {
 
     return (
         <div className="main">
-            <Header theme={{ short: false }} />
+            <Header theme={{ short: false }}
+                loggedIn={loggedIn}
+            />
             <main>
                 <Promo />
                 <Project />

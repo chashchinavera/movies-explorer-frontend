@@ -1,17 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function SearchForm() {
+function SearchForm({ switchOnButton, onSubmit, onChange }) {
 
-    const [switchOnButton, setSwitchOnButton] = useState(false);
+    const [request, setRequest] = useState('');
 
-    function handleToggleSwitch() {
-        setSwitchOnButton(!switchOnButton);
+    function handleRequestEdit(evt) {
+        setRequest(evt.target.value);
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log('Поиск фильма')
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        if (request.trim().length === 0) {
+        } else {
+            onSubmit(request);
+        }
     }
+
+    useEffect(() => {
+        if (localStorage.getItem('request') && window.location.pathname === '/movies') {
+            setRequest(localStorage.getItem('request'));
+        }
+    }, []);
 
     return (
         <section className='search'>
@@ -22,6 +31,8 @@ function SearchForm() {
                 <input
                     className='search__input'
                     type='text'
+                    value={request || ''}
+                    onChange={handleRequestEdit}
                     placeholder='Фильм'
                     required />
                 <button className='search__submit' type='submit' aria-label='Поиск фильмов' />
@@ -32,7 +43,7 @@ function SearchForm() {
                     className={`search__switch-button ${switchOnButton ? 'search__switch-on' : ''}`}
                     type='button'
                     aria-label='Поиск короткометражек'
-                    onClick={handleToggleSwitch}
+                    onClick={onChange}
                 />
                 <p className='search__text'>Короткометражки</p>
             </div>

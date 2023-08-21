@@ -1,20 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import SavedMoviesList from '../SavedMoviesList/SavedMoviesList';
 import SearchForm from "../SearchForm/SearchForm";
-import { savedCards } from '../../utils/constants';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function SavedMovies() {
+function SavedMovies({ loggedIn, filterMovies, filterDuration, onDelete, onSave, savedMovies }) {
 
-    const [loggedIn, setLoggedIn] = useState(true);
-    const [cards, setCards] = useState([]);
+    const [switchOnButton, setSwitchOnButton] = useState(false);
+    const [filteredDurationMovies, setFilteredDurationMovies] = useState(savedMovies);
+    const [searchRequest, setSearchRequest] = useState('');
+
+    function handleSwitchButton() {
+        setSwitchOnButton(!switchOnButton);
+    }
+
+    function handleMovies(request) {
+        setSearchRequest(request);
+    }
 
     useEffect(() => {
-        if (loggedIn) {
-            setCards(savedCards);
-        }
-    }, [loggedIn])
+        const savedMoviesFilteredList = filterMovies(savedMovies, searchRequest);
+        setFilteredDurationMovies(switchOnButton ? filterDuration(savedMoviesFilteredList) : savedMoviesFilteredList);
+        console.log(filteredDurationMovies)
+    }, [savedMovies, searchRequest, switchOnButton])
 
     return (
         <div className='movies'>
@@ -23,9 +31,16 @@ function SavedMovies() {
                 theme={{ short: false }}
             />
             <main>
-                <SearchForm />
-                <SavedMoviesList
-                    cards={savedCards}
+                <SearchForm
+                    switchOnButton={switchOnButton}
+                    onSubmit={handleMovies}
+                    onChange={handleSwitchButton}
+                />
+                <MoviesCardList
+                    onDelete={onDelete}
+                    onSave={onSave}
+                    isMoviesSaved={true}
+                    savedMovies={filteredDurationMovies}
                 />
             </main>
             <Footer />
