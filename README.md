@@ -18,7 +18,7 @@ Pull request: https://github.com/chashchinavera/movies-explorer-frontend/pull/2
 IP-адрес: 62.84.114.212
 
 Backend: https://api.chashchinavv.nomoreparties.sbs/
-Frontend: https://api.chashchinavv.nomoreparties.sbs/
+Frontend: https://chashchinavv.nomoreparties.sbs/
 
 [Ссылка на репозиторий](https://github.com/chashchinavera/movies-explorer-frontend)   
 [Ссылка на макет в Figma](https://www.figma.com/file/cGlhSAlXLvW1EiDj8PS5vf/dark-2?type=design&node-id=932-2618&mode=design&t=vXihrMsyL2d7HJU5-0)
