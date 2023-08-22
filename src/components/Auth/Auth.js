@@ -1,6 +1,5 @@
 const BASE_URL = 'https://api.chashchinavv.nomoreparties.sbs';
 
-
 export const register = (name, email, password) => {
     return fetch(`${BASE_URL}/signup`, {
         method: "POST",
