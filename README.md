@@ -12,6 +12,8 @@
 ### **Ссылки на проект**
 ***
 Pull request: https://github.com/chashchinavera/movies-explorer-frontend/pull/2
+(Сделала merge для клонирования всех данных на сервер)
+Второй pull request: https://github.com/chashchinavera/movies-explorer-frontend/pull/4#issue-1860579429
 
 IP-адрес: 62.84.114.212
 
