@@ -6,8 +6,15 @@ function Footer() {
             <div className='footer__signboard'>
                 <p className='footer__year'>&copy; 2023</p>
                 <div className='footer__sources'>
-                    <p className='footer__source'>Яндекс.Практикум</p>
-                    <p className='footer__source'>Github</p>
+                    <a className='footer__source'
+                    href='https://practicum.yandex.ru'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    >Яндекс.Практикум</a>
+                    <a className='footer__source'
+                        href='https://github.com/chashchinavera'
+                        target='_blank'
+                        rel='noopener noreferrer'>Github</a>
                 </div>
             </div>
         </footer>

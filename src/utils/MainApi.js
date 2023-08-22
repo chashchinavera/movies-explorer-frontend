@@ -73,7 +73,7 @@ class Api {
           description: data.description,
           image: `${BASE_URL}${data.image.url}`,
           trailerLink: data.trailerLink,
-          thumbnail: `${BASE_URL}${data.image.formats.thumbnail.url}`,
+          thumbnail: `${BASE_URL}${data.image.url}`,
           movieId: data.id,
           nameRU: data.nameRU,
           nameEN: data.nameEN,
@@ -83,7 +83,7 @@ class Api {
   
     // Удаление фильма из сохраненных
     deleteMovie(movieId, jwt) {
-      return this._request(`${this._link}movies/${movieId}/`, {
+      return this._request(`${this._link}movies/${movieId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${jwt}`,
@@ -95,7 +95,8 @@ class Api {
   
   
   const mainApi = new Api({
-    link: 'https://api.chashchinavv.nomoreparties.sbs/',
+    link: 'http://localhost:3000/',
+    
   });
   
   export default mainApi;

@@ -46,9 +46,9 @@ function App() {
     function handleRegisterSubmit(evt) {
         evt.preventDefault();
         Authorisation.register(values.name, values.email, values.password)
-            .then(() => {
-                navigate('/signin');
+            .then((res) => {
                 resetForm();
+                handleLoginSubmit(evt);
                 setIsSuccess(true);
                 setSuccessText('Вы успешно зарегистрированы')
                 setIsOpenInfoTooltip(true);
