@@ -15,7 +15,7 @@
 IP-адрес: 158.160.47.114
 
 Backend: https://api.chashchinavv.nomoreparties.sbs/
-Frontend: https://api.chashchinavv.nomoreparties.sbs/
+Frontend: https://chashchinavv.nomoreparties.sbs/
 
 Pull request link: https://github.com/chashchinavera/movies-explorer-frontend/pull/2
 
