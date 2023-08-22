@@ -11,8 +11,9 @@
 
 ### **Ссылки на проект**
 ***
+Pull request: https://github.com/chashchinavera/movies-explorer-frontend/pull/2
 
-IP-адрес: 158.160.47.114
+IP-адрес: 62.84.114.212
 
 Backend: https://api.chashchinavv.nomoreparties.sbs/
 Frontend: https://api.chashchinavv.nomoreparties.sbs/

@@ -38,6 +38,11 @@
     cursor: pointer;
 }
 
+.search__submit_disabled {
+    cursor: auto;
+    opacity: 0.5;
+}
+
 .search__submit:hover {
     opacity: 50%;
     transition: 0.5s linear;
@@ -121,12 +126,12 @@
         padding: 0 0 40px;
         border-bottom: #424242 1px solid;
     }
-    
+
     .search__input {
         padding: 13px;
         line-height: normal;
     }
-    
+
     .search__submit {
         width: 55px;
         height: 44px;
