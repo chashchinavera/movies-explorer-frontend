@@ -65,6 +65,7 @@ function Register({ onRegister, values, errors, isValid, handleChange }) {
                         />
                         <span className='register__error'>{errors.password}</span>
                     </div>
+
                     <button
                         type='submit'
                         aria-label='Зарегистрироваться'

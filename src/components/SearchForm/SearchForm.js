@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 function SearchForm({ switchOnButton, onSubmit, onChange }) {
 
     const [request, setRequest] = useState('');
+    const [isDisabled, setIsDisabled] = useState(true);
 
     function handleRequestEdit(evt) {
         setRequest(evt.target.value);
@@ -10,10 +11,7 @@ function SearchForm({ switchOnButton, onSubmit, onChange }) {
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        if (request.trim().length === 0) {
-        } else {
-            onSubmit(request);
-        }
+        onSubmit(request);
     }
 
     useEffect(() => {
@@ -22,6 +20,14 @@ function SearchForm({ switchOnButton, onSubmit, onChange }) {
         }
     }, []);
 
+    useEffect(() => {
+        if (request.trim().length !== 0) {
+            setIsDisabled(false);
+        } else {
+        setIsDisabled(true);
+        }
+    }, [request]);
+
     return (
         <section className='search'>
             <form
@@ -29,13 +35,16 @@ function SearchForm({ switchOnButton, onSubmit, onChange }) {
                 onSubmit={handleSubmit}
                 id='search'>
                 <input
-                    className='search__input'
+                    className={`search__input`}
                     type='text'
-                    value={request || ''}
+                    value={request}
                     onChange={handleRequestEdit}
-                    placeholder='Фильм'
-                    required />
-                <button className='search__submit' type='submit' aria-label='Поиск фильмов' />
+                    placeholder={window.location.pathname === '/movies' ? 'Нужно ввести ключевое слово' : 'Фильм'}
+                    required
+                    name='search'
+                />
+                <button className={`search__submit ${isDisabled ? 'search__submit_disabled' : 'search__submit:hover'}`}
+                    type='submit' aria-label='Поиск фильмов' disabled={isDisabled} />
 
             </form>
             <div className='search__shorts'>

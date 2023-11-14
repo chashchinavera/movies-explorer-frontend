@@ -25,20 +25,20 @@ function MoviesCardList({ movies, isLoading, onDelete, onSave, isMoviesSaved, lo
             setMoviesAmount(CARDS_AMOUNT_MOBILE);
         }
     }
-//Изменение отображения количества фильмов в зависимости от разрешения экрана
+    //Изменение отображения количества фильмов в зависимости от разрешения экрана
     useEffect(() => {
         handleMoviesLines();
     }, []);
 
-// //Откладывание выполнения функции отображения фильмов
-useEffect(() => {
-    setTimeout(() => {
-        window.addEventListener('resize', handleMoviesLines);
-    }, 10);
-    return () => {
-        window.removeEventListener('resize', handleMoviesLines);
-    }
-}, []);
+    // //Откладывание выполнения функции отображения фильмов
+    useEffect(() => {
+        setTimeout(() => {
+            window.addEventListener('resize', handleMoviesLines);
+        }, 10);
+        return () => {
+            window.removeEventListener('resize', handleMoviesLines);
+        }
+    }, []);
 
     function loadMovies() {
         const width = window.innerWidth;

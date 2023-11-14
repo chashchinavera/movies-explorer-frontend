@@ -5,11 +5,15 @@ function MoviesCard({ card, name, image, duration, trailerLink, onDelete, onSave
 
     const isSaved = savedMovies && savedMovies.some((movie) => movie.movieId === card.id);
 
-    function handleSaveButton() {
-        onSave(card);
-    }
+    function handleButtonClick() {
+        if (isSaved) {
+            onDelete(savedMovies.find((movie) => movie.movieId === card.id));
+        } else {
+            onSave(card);
+        }
+    };
 
-    function handleDeleteButton() {
+    function handleDeleteCard() {
         onDelete(card);
     }
 
@@ -20,8 +24,7 @@ function MoviesCard({ card, name, image, duration, trailerLink, onDelete, onSave
                 className={`movie__button ${isMoviesSaved ? 'movie__delete' : ''}${isSaved ? 'movie__button_active' : ''}`}
                 type='button'
                 aria-label='Сохранить'
-                onClick={!isMoviesSaved ? handleSaveButton : handleDeleteButton}
-                disabled={isSaved}
+                onClick={isMoviesSaved ? handleDeleteCard : handleButtonClick}
             >
                 {isSaved || isMoviesSaved ? '' : 'Сохранить'}
             </button>

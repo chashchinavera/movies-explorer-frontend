@@ -45,10 +45,10 @@ function App() {
 
     function handleRegisterSubmit(evt) {
         evt.preventDefault();
-        Authorisation.register(values.name, values.email, values.email)
-            .then(() => {
-                navigate('/signin');
+        Authorisation.register(values.name, values.email, values.password)
+            .then((res) => {
                 resetForm();
+                handleLoginSubmit(evt);
                 setIsSuccess(true);
                 setSuccessText('Вы успешно зарегистрированы')
                 setIsOpenInfoTooltip(true);
@@ -69,7 +69,7 @@ function App() {
                 if (res.jwt) {
                     localStorage.setItem('jwt', res.jwt);
                     localStorage.setItem('loggedIn', true)
-                    navigate('/');
+                    navigate('/movies');
                 }
             })
             .catch((err) => {
@@ -80,7 +80,7 @@ function App() {
     }
 
     useEffect(() => {
-        if (jwt) {
+        if (jwt && loggedIn) {
             Authorisation.checkToken(jwt)
             Promise.all([mainApi.getUserData(jwt), mainApi.getInitialCards(jwt)])
                 .then(([currentUser, savedMovies]) => {
@@ -91,7 +91,7 @@ function App() {
                     console.log(err);
                 });
         }
-    }, [jwt]);
+    }, [jwt, loggedIn]);
 
     function handleUpdateUser(data) {
         mainApi.sendUserData(data, jwt)
@@ -226,7 +226,7 @@ function App() {
                                 handleChange={handleChange}
                             />
                             :
-                            <Navigate to='/' />}
+                            <Navigate to='/movies' />}
                     />
                     <Route
                         path='/signup'
@@ -239,7 +239,7 @@ function App() {
                                 handleChange={handleChange}
                             />
                             :
-                            <Navigate to='/' />}
+                            <Navigate to='/movies' />}
                     />
                     <Route
                         path='*'
