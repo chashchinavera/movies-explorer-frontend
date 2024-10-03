@@ -17,13 +17,13 @@
 ### **Как посмотреть проект**
 ***
 ```
-$  git clone https://github.com/chashchinavera/react-mesto-auth.git
+$  git clone https://github.com/chashchinavera/movies-explorer-frontend.git
 ```
 ```
-$  cd mesto-react
+$  cd movies-explorer-frontend
 ```
 ```
-$  npm i react
+$  npm i 
 ```
 ```
 $  npm start
