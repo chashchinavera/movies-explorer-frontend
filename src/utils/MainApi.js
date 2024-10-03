@@ -95,7 +95,7 @@ class Api {
   
   
   const mainApi = new Api({
-    link: 'https://api.chashchinavv.nomoreparties.sbs/',
+    link: 'http://localhost:3001/',
     
   });
   
